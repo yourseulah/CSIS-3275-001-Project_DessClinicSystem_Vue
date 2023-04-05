@@ -3,6 +3,7 @@
         <H1 class="text-center">Appointment List</H1>
         <table class="table table-striped">
             <thead>
+                <th>Appointment ID</th>
                 <th>Visit Date</th>
                 <th>Visit Time</th>
                 <th>Mobile Number</th>
@@ -14,9 +15,10 @@
             </thead>
             <tbody>
                 <tr v-for = "appointment in appointments" v-bind:key = "appointment.appointmentId">
+                    <td> {{ appointment.appointmentId }}</td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
-                    <td> {{ appointment.mobileNumber }}</td>
+                    <td> {{ appointment.mobile }}</td>
                     <td> {{ appointment.email }}</td>
                     <td> {{ appointment.quickNote }}</td>
                     <td> {{ appointment.doctorTranscript }}</td>

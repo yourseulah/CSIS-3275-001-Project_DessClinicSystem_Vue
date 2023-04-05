@@ -1,46 +1,32 @@
 <template>
     <div>
-        <H1 v-if="patient">Hello {{ patient.firstName }} {{ patient.lastName }}<BR /></H1>
-        <H4 v-if="patient">Gender: {{ patient.gender }}<BR />
-        DOB: {{ patient.dob }}<BR />
-        Mobile: {{ patient.mobile }}<BR />
-        Email: {{ patient.email }}<BR />
-        Address: {{ patient.address }}<BR />
-        Zipcode: {{ patient.zipCode }}<BR />
-        Surgery: {{ patient.surgery }}<BR />
-        Allergies: {{ patient.allergies }}<BR />
-        Genetic Disease: {{ patient.geneticDisease }}<BR />
-        </H4>
+        <PatientSearch></PatientSearch>
+        <BR /><BR />
+        <PatientAdd></PatientAdd>
+        <BR /><BR />
+        <PatientDelete></PatientDelete>
+        <BR /><BR />
+        <PatientUpdate></PatientUpdate>
+        <BR /><BR />
+        <PatientList></PatientList>
     </div>
 </template>
 
 <script>
-import PatientDataService from '@/services/PatientDataService';
+import PatientSearch from './PatientSearch.vue';
+import PatientAdd from './PatientAdd.vue';
+import PatientDelete from './PatientDelete.vue';
+import PatientUpdate from './PatientUpdate.vue';
+import PatientList from './PatientList.vue';
 
 export default{
-    data() {
-        return{
-            patient: null
-        }
+    components: {
+        PatientSearch,
+        PatientAdd,
+        PatientDelete,
+        PatientUpdate,
+        PatientList
     },
-
-    methods: {
-        retreivePatient(){
-            const id = 2;
-            PatientDataService.retreivePatient(id)
-                .then(response => {
-                    this.patient = response.data;
-                    console.log(this.patient);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-    },
-
-    mounted() {
-        this.retreivePatient();
-    }
 }
 
 </script>

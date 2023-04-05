@@ -17,7 +17,9 @@
 		Allergies: <input type="text" name="allergies" v-model="allergies"><BR />
 		Genetic Disease: <input type="text" name="geneticDisease" v-model="geneticDisease"><BR />
 		<button @click="handleAddPatientClick">Add a new patient</button>
+
     </div>
+    
 </template>
 
 
@@ -28,6 +30,7 @@ import PatientDataService from '@/services/PatientDataService';
 
 export default {
         name: 'AllPatients',
+
         data(){
             return {
                 patientId: "",
