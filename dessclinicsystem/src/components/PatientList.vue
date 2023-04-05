@@ -16,7 +16,6 @@
                 <th>Surgery</th>
                 <th>Allergies</th>
                 <th>Genetic Disease</th>
-                <th>ACTION</th>
             </thead>
             <tbody>
                 <tr v-for = "patient in patients" v-bind:key = "patient.id">
@@ -33,7 +32,6 @@
                     <td> {{ patient.surgery }}</td>
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
-                    <td></td>
                 </tr>
             </tbody>
         </table>
