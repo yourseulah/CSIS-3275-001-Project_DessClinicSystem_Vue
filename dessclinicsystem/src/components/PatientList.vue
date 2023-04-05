@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <H1 class="text-center">Patient List</H1>
+        <h1 class="text-center">Patient List</h1>
         <table class="table table-striped">
             <thead>
                 <th>ID</th>
@@ -33,7 +33,10 @@
                     <td> {{ patient.surgery }}</td>
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
-                    <td><router-link :to="'/patient/'+patient.id">Update</router-link></td>
+                    <td><router-link :to="'/patient/'+patient.id">Update</router-link>
+                        <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
+                    </td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -59,7 +62,19 @@
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
-            }
+            },
+
+            handleDeletePatientClick(id){
+                                
+                let result;
+                result = PatientDataService.deletePatient(id);
+                
+                console.warn(result);
+                alert("Submitted");
+
+                this.retreiveAllPatients()
+            },
+
         },
         created(){
             this.retreiveAllPatients()

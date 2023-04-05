@@ -1,21 +1,21 @@
 
 <template>
     <div class = "container">
-        <H1 class="text-center">Add a Patient</H1>
-        Patient ID: <input type="text" name="patientID" v-model="patientId"><BR />
-        First Name: <input type="text" name="firstName" v-model="firstName"><BR />
-        Last Name: <input type="text" name="lastName" v-model="lastName"><BR />
+        <h1 class="text-center">Add a Patient</h1>
+        Patient ID: <input type="text" name="patientID" v-model="patientId"><br />
+        First Name: <input type="text" name="firstName" v-model="firstName"><br />
+        Last Name: <input type="text" name="lastName" v-model="lastName"><br />
 		Gender: <select name="gender" v-model="gender"><option value="Male" selected>Male</option>
             <option value="Female">Female</option>
-            <option value="Unknown">Unknown</option></select><BR />
-		Date of Birth: <input type="text" name="dob" v-model="dob"><BR />
-		Mobile Phone: <input type="text" name="mobile" v-model="mobile"><BR />
-		Email: <input type="text" name="email" v-model="email"><BR />
-		Address: <input type="text" name="address" v-model="address"><BR />
-		Zip Code: <input type="text" name="zipCode" v-model="zipCode"><BR />
-		Surgery: <input type="text" name="surgery" v-model="surgery"><BR />
-		Allergies: <input type="text" name="allergies" v-model="allergies"><BR />
-		Genetic Disease: <input type="text" name="geneticDisease" v-model="geneticDisease"><BR />
+            <option value="Unknown">Unknown</option></select><br />
+		Date of Birth: <input type="text" name="dob" v-model="dob"><br />
+		Mobile Phone: <input type="text" name="mobile" v-model="mobile"><br />
+		Email: <input type="text" name="email" v-model="email"><br />
+		Address: <input type="text" name="address" v-model="address"><br />
+		Zip Code: <input type="text" name="zipCode" v-model="zipCode"><br />
+		Surgery: <input type="text" name="surgery" v-model="surgery"><br />
+		Allergies: <input type="text" name="allergies" v-model="allergies"><br />
+		Genetic Disease: <input type="text" name="geneticDisease" v-model="geneticDisease"><br />
 		<button @click="handleAddPatientClick">Add a new patient</button>
 
     </div>

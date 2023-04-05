@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <H1 class="text-center">Appointment List</H1>
+        <h1 class="text-center">Appointment List</h1>
         <table class="table table-striped">
             <thead>
                 <th>Appointment ID</th>
@@ -35,6 +35,7 @@
     import AppointmentService from '../services/AppointmentService'
 
     export default {
+
         name: 'AllAppointments',
         data(){
             return {

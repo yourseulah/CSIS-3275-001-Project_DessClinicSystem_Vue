@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <H1 class="text-center">Search a Patient Result</H1>
+        <h1 class="text-center">Search a Patient Result</h1>
         Search: <input type="text" name="searchStr" v-model="queryStr"><button @click="handleSearchPatientClick">Go</button>
         {{ NotFound }}
         <table v-if="result" class="table table-striped">

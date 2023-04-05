@@ -1,13 +1,13 @@
 <template>
     <div>
         <PatientSearch></PatientSearch>
-        <BR /><BR />
+        <br /><br />
         <PatientAdd></PatientAdd>
-        <BR /><BR />
+        <br /><br />
         <PatientDelete></PatientDelete>
-        <BR /><BR />
-        
-        <BR /><BR />
+        <br /><br />
+        <PatientUpdate></PatientUpdate>
+        <br /><br />
         <PatientList></PatientList>
     </div>
 </template>
@@ -16,7 +16,7 @@
 import PatientSearch from './PatientSearch.vue';
 import PatientAdd from './PatientAdd.vue';
 import PatientDelete from './PatientDelete.vue';
-//import PatientUpdate from './PatientUpdate.vue';
+import PatientUpdate from './PatientUpdate.vue';
 import PatientList from './PatientList.vue';
 
 export default{
@@ -24,7 +24,7 @@ export default{
         PatientSearch,
         PatientAdd,
         PatientDelete,
-        //PatientUpdate,
+        PatientUpdate,
         PatientList
     },
 }

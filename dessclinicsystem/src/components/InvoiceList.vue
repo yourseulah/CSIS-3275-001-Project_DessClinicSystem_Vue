@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <H1 class="text-center">Invoice List</H1>
+        <h1 class="text-center">Invoice List</h1>
         <table class="table table-striped">
             <thead>
                 <th>Payment Date</th>
