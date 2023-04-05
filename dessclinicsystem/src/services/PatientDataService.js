@@ -18,7 +18,7 @@ class PatientDataService {
     }
     searchPatient(queryStr){
         return http.get(`/patients`, {
-            params: { searchStr: queryStr},
+            params: { searchStr: queryStr },
         });
     }
 }
