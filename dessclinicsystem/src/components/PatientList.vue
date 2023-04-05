@@ -16,6 +16,7 @@
                 <th>Surgery</th>
                 <th>Allergies</th>
                 <th>Genetic Disease</th>
+                <th>ACTIONS</th>
             </thead>
             <tbody>
                 <tr v-for = "patient in patients" v-bind:key = "patient.id">
@@ -32,6 +33,7 @@
                     <td> {{ patient.surgery }}</td>
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
+                    <td><router-link :to="'/patient/'+patient.id">Update</router-link></td>
                 </tr>
             </tbody>
         </table>

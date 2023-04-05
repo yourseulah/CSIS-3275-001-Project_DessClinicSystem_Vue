@@ -53,7 +53,7 @@ const routes = [
     },
     {
         name: "PatientUpdate",
-        path: "/patientUpdate",
+        path: "/patient/:id",
         component: PatientUpdate
     },
     {
