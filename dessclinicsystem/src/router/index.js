@@ -6,6 +6,7 @@ import DoctorList from "../components/DoctorList.vue";
 import InvoiceList from "../components/InvoiceList.vue";
 import PatientAdd from "../components/PatientAdd.vue";
 import PatientUpdate from "../components/PatientUpdate.vue";
+import PatientUpdate2 from "../components/PatientUpdate2.vue";
 import PatientDelete from "../components/PatientDelete.vue";
 import PatientInfo from "../components/PatientInfo.vue";
 import PatientSearch from "../components/PatientSearch.vue";
@@ -55,6 +56,11 @@ const routes = [
         name: "PatientUpdate",
         path: "/patient/:id",
         component: PatientUpdate
+    },
+    {
+        name: "PatientUpdate2",
+        path: "/patient/:id",
+        component: PatientUpdate2
     },
     {
         name: "PatientSearch",

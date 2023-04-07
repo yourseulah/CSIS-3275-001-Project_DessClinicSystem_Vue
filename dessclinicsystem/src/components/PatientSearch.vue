@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <h1 class="text-center">Search a Patient Result</h1>
+        <h1 class="text-center">Search a Patient Result (Sibling to Sibling components)</h1>
         Search: <input type="text" name="searchStr" v-model="queryStr"><button @click="handleSearchPatientClick">Go</button>
         {{ NotFound }}
         <table v-if="result" class="table table-striped">
@@ -18,7 +18,7 @@
                 <th>Surgery</th>
                 <th>Allergies</th>
                 <th>Genetic Disease</th>
-                <th>ACTION</th>
+                <th>ACTIONS</th>
             </thead>
             <tbody>
                 <tr v-for = "patient in patients" v-bind:key = "patient.id">
@@ -35,7 +35,12 @@
                     <td> {{ patient.surgery }}</td>
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
-                    <td></td>
+                    <td>
+                        <!-- <router-link :to="'/patient/'+patient.id">Update</router-link> -->
+                        <!-- <router-link :to="'/patient/'+patient.id"><button @click="navigate" role="link">Update</button></router-link> -->
+                        <button v-on:click="getChild(patient)">Update</button>
+                        <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -47,12 +52,18 @@
 
     export default {
         name: 'AllPatients',
+
+        props: {
+            getChild: Function
+        },
+
         data(){
             return {
                 result: false,
                 queryStr: "",
                 NotFound: "",
                 patients : [],
+                // patient: null
             }
         },
         methods: {
@@ -70,6 +81,16 @@
                     console.log(error.response.data);
                 })
             }
+        },
+
+        handleDeletePatientClick(id){
+                    
+        let result;
+        result = PatientDataService.deletePatient(id);
+    
+        console.warn(result);
+        alert("Submitted");
+
         },
     }
 </script>

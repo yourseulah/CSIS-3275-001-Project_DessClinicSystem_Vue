@@ -18,8 +18,10 @@
                     <td> {{ appointment.appointmentId }}</td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
-                    <td> {{ appointment.mobile }}</td>
-                    <td> {{ appointment.email }}</td>
+                    <td v-if="appointment.patient"> {{ appointment.patient.mobile }}</td>
+                    <td v-else></td>
+                    <td v-if="appointment.patient"> {{ appointment.patient.email }}</td>
+                    <td v-else></td>
                     <td> {{ appointment.quickNote }}</td>
                     <td> {{ appointment.doctorTranscript }}</td>
                     <td> {{ appointment.paymentStatus }}</td>

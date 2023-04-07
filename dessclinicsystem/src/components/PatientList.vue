@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <h1 class="text-center">Patient List</h1>
+        <h1 class="text-center">Patient List (Sibling to Sibling components)</h1>
         <table class="table table-striped">
             <thead>
                 <th>ID</th>
@@ -33,10 +33,11 @@
                     <td> {{ patient.surgery }}</td>
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
-                    <td><router-link :to="'/patient/'+patient.id">Update</router-link>
+                    <td>
+                        <button v-on:click="getChild(patient)">Update</button>
+                        <!-- <router-link :to="'/patient/'+patient.id"><button @click="navigate, getChild(childName)" role="link">Update</button></router-link> -->
                         <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
                     </td>
-                    
                 </tr>
             </tbody>
         </table>
@@ -48,9 +49,15 @@
 
     export default {
         name: 'AllPatients',
+
+        props: {
+            getChild: Function
+        },
+
         data(){
             return {
-                patients : []
+                patients : [],
+                patient: null,
             }
         },
         methods: {
@@ -75,6 +82,19 @@
                 this.retreiveAllPatients()
             },
 
+            // updatePatientClick(id) {
+            //     let patientForUpdate = {
+            //         id: id,
+            //     }
+            //     this.setPatientForUpdate(patientForUpdate);
+            // },
+
+            // putPatientDetailsToProps(patient) {
+            //     let patientForUpdate = {
+            //         patient: patient,
+            //     }
+            //     // this.setPatientForUpdate(patientForUpdate);
+            // }
         },
         created(){
             this.retreiveAllPatients()
