@@ -32,7 +32,7 @@ export default {
 
         props: {
             updatePatient: {
-                id: ""
+                // id: ""
             }
         },
 

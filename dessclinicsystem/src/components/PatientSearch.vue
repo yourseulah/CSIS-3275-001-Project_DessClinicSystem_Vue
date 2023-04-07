@@ -1,7 +1,7 @@
 <template>
     <div class = "container">
         <h1 class="text-center">Search a Patient Result (Sibling to Sibling components)</h1>
-        Search: <input type="text" name="searchStr" v-model="queryStr"><button @click="handleSearchPatientClick">Go</button>
+        Search: <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr"><button @click="handleSearchPatientClick">Go</button>
         {{ NotFound }}
         <table v-if="result" class="table table-striped">
             <thead>
