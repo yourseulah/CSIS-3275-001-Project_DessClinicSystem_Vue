@@ -98,7 +98,7 @@
                     <label class="form-label">Payment status: </label>
                 </div>
                 <div class="col">
-                    <select class="form-control" v-model="appointment.payment.paymentStatus">
+                    <select class="form-control" v-model="payment.paymentStatus">
                         <option value="Paid">PAID</option>
                         <option value="Pending">PENDING</option>
                         <option value="Unknown">UNKNOWN</option>
@@ -109,7 +109,7 @@
                     <label class="form-label">Payment date: </label>
                 </div>
                 <div class="col">
-                <input class="form-control" type="text" name="paymentDate" v-model="appointment.payment.currentDate">
+                <input class="form-control" type="text" name="paymentDate" v-model="payment.currentDate">
                 </div>
             
             <div class="row">
@@ -117,7 +117,7 @@
                     <label class="form-label">Payment method: </label>
                 </div>
                 <div class="col">
-                    <select class="form-control" v-model="appointment.payment.paymentMethod">
+                    <select class="form-control" v-model="payment.paymentMethod">
                         <option value="VISA">VISA</option>
                         <option value="MASTERCARD">MASTERCARD</option>
                         <option value="OTHER">OTHER</option>
@@ -128,7 +128,7 @@
                     <label class="form-label">Insurance company: </label>
                 </div>
                 <div class="col">
-                    <select class="form-control" v-model="appointment.payment.insuranceCompany">
+                    <select class="form-control" v-model="payment.insuranceCompany">
                         <option value="CGC CANADA">CGC CANADA</option>
                         <option value="BC HEALTH">BC HEALTH</option>
                         <option value="OTHER">OTHER</option>
@@ -161,22 +161,26 @@
             return {
                 appointments : [],
                 appointment: {
-                    payment:{
-                        currentDate: new Date().toISOString().substr(0, 10)
-                    }
-                },
                     patient: {
 
                     },
-
-                
-            }
+                },
+                payment:{
+                    id: '',
+                    currentDate: new Date().toISOString().substr(0, 10),
+                    paymentMethod: '',
+                    paymentStatus: '',
+                    insuranceCompany: '',
+                }
+            }    
         },
+
         computed: {
             fullName() {
                 return this.patient.firstName + ' ' + this.patient.lastName;
-            }
+            }  
         },
+
         methods: {
             getAppointments(){
                 AppointmentService.getAppointments().then((response) =>{
@@ -202,11 +206,11 @@
                 }
 
                 const newInvoice = {
-                    "paymentDate": this.appointment.payment.currentDate,
-                    "method": this.appointment.payment.paymentMethod,
+                    "paymentDate": this.payment.currentDate,
+                    "method": this.payment.paymentMethod,
                     "amount": this.appointment.amount,
-                    "status": this.appointment.payment.paymentStatus,
-                    "insuranceCompany": this.appointment.payment.insuranceCompany,
+                    "status": this.payment.paymentStatus,
+                    "insuranceCompany": this.payment.insuranceCompany,
                     "yearsOfPractice": 10
                 }
 
@@ -226,8 +230,9 @@
                 InvoiceService.createInvoice(newInvoice)
                     .then(response =>{
                         const newApp = response.data;
-                        console.log("New Invoice:");
+                        const paymentID = response.data.id;
                         console.log(newApp);
+                        console.log('Payment id:', paymentID);
                     })
                     .catch(error => {
                         console.log(error);

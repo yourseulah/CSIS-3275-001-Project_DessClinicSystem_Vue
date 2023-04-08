@@ -3,6 +3,7 @@
         <h1 class="text-center">Invoice List</h1>
         <table class="table table-striped">
             <thead>
+                <th>Invoice ID</th>
                 <th>Payment Date</th>
                 <th>Method</th>
                 <th>Amount</th>
@@ -11,6 +12,7 @@
             </thead>
             <tbody>
                 <tr v-for = "invoice in invoices" v-bind:key = "invoice.id">
+                    <td> {{ invoice.id }}</td>
                     <td> {{ invoice.paymentDate }}</td>
                     <td> {{ invoice.method }}</td>
                     <td> {{ invoice.amount }}</td>
