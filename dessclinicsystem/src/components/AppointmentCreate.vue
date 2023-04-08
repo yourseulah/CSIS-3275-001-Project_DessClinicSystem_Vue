@@ -160,13 +160,15 @@
         data(){
             return {
                 appointments : [],
-                appointment: {},
-                    patient: {
-
-                    },
+                appointment: {
                     payment:{
                         currentDate: new Date().toISOString().substr(0, 10)
                     }
+                },
+                    patient: {
+
+                    },
+
                 
             }
         },
