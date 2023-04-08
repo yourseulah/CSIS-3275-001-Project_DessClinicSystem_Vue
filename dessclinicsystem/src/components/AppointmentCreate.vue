@@ -166,7 +166,6 @@
                     },
                 },
                 payment:{
-                    id: '',
                     currentDate: new Date().toISOString().substr(0, 10),
                     paymentMethod: '',
                     paymentStatus: '',
