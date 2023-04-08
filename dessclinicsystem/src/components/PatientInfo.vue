@@ -4,7 +4,7 @@
         <h3 v-if="childName">(Child to Parent) User Name : {{ childName.id }}</h3>
         <PatientSearch :getChild="getChildName"></PatientSearch>
         <br /><br />
-        <PatientAdd></PatientAdd>
+        <PatientAdd :updatePatient="childName"></PatientAdd>
         <br /><br />
         <PatientDelete></PatientDelete>
         <br /><br />
