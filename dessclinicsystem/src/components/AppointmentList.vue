@@ -3,29 +3,31 @@
         <h1 class="text-center">Appointment List</h1>
         <table class="table table-striped">
             <thead>
-                <th>Appointment ID</th>
-                <th>Visit Date</th>
-                <th>Visit Time</th>
-                <th>Mobile Number</th>
-                <th>Email</th>
-                <th>Quick Note</th>
-                <th>Doctor Transcript</th>
-                <th>Payment Status</th>
+                <th>ID</th>
+                <th>Delete</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Note</th>
+                <th>Status</th>
                 <th>Amount</th>
             </thead>
             <tbody>
                 <tr v-for = "appointment in appointments" v-bind:key = "appointment.appointmentId">
                     <td> {{ appointment.appointmentId }}</td>
+                    <td>delete(not linked yet)</td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
-                    <td v-if="appointment.patient"> {{ appointment.patient.mobile }}</td>
-                    <td v-else></td>
-                    <td v-if="appointment.patient"> {{ appointment.patient.email }}</td>
+                    <td v-if="appointment.patient"> {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</td>
                     <td v-else></td>
                     <td> {{ appointment.quickNote }}</td>
-                    <td> {{ appointment.doctorTranscript }}</td>
-                    <td> {{ appointment.paymentStatus }}</td>
-                    <td> {{ appointment.amount }}</td>
+                    <!-- <td> {{ appointment.doctorTranscript }}</td> -->
+                    <td v-if="appointment.paymentStatus===0">Unpaid</td>
+                    <td v-else>Paid</td>
+                    <!-- <td> {{ appointment.paymentStatus }}</td> -->
+                    <td v-if="appointment.amount===0">-</td>
+                    <td v-else> {{ appointment.amount }}</td>
+                    <!-- <td> {{ appointment.amount }}</td> -->
                 </tr>
             </tbody>
         </table>

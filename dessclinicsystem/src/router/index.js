@@ -1,15 +1,18 @@
 import { createWebHistory, createRouter } from "vue-router";
 import HomePage from "../components/HomePage.vue";
 import PatientList from "../components/PatientList.vue";
+import AppointmentInfo from "@/components/AppointmentInfo"
 import AppointmentList from "../components/AppointmentList.vue";
+import AppointmentCreate from "../components/AppointmentCreate.vue";
 import DoctorList from "../components/DoctorList.vue";
 import InvoiceList from "../components/InvoiceList.vue";
+import PatientInfo from "../components/PatientInfo.vue";
 import PatientAdd from "../components/PatientAdd.vue";
 import PatientUpdate from "../components/PatientUpdate.vue";
 import PatientUpdate2 from "../components/PatientUpdate2.vue";
 import PatientDelete from "../components/PatientDelete.vue";
-import PatientInfo from "../components/PatientInfo.vue";
 import PatientSearch from "../components/PatientSearch.vue";
+import PatientSearch2 from "../components/PatientSearch2.vue";
 
 const routes = [
     {
@@ -28,9 +31,19 @@ const routes = [
         component: DoctorList
     },
     {
+        name: "AppointmentInfo",
+        path: "/appointmentinfo",
+        component: AppointmentInfo
+    },
+    {
         name: "AppointmentList",
         path: "/appointmentlist",
         component: AppointmentList
+    },
+    {
+        name: "AppointmentCreate",
+        path: "/appointmentcreate",
+        component: AppointmentCreate
     },
     {
         name: "InvoiceList",
@@ -66,6 +79,11 @@ const routes = [
         name: "PatientSearch",
         path: "/patientSearch",
         component: PatientSearch
+    },
+    {
+        name: "PatientSearch2",
+        path: "/patientSearch2",
+        component: PatientSearch2
     },
 ];
 

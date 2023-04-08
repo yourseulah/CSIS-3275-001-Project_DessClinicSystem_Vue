@@ -18,6 +18,7 @@
 		Allergies: <input type="text" name="allergies" v-model="patient.allergies"><br />
 		Genetic Disease: <input type="text" name="geneticDisease" v-model="patient.geneticDisease"><br />
 		<button @click="handleUpdatePatientClick">Update a patient</button>
+        <button @click="clearForm">Reset</button>
     </div>
 </template>
 
@@ -56,10 +57,10 @@ export default {
             };
         },
         methods: {
-            loadUpdatePatientInfo(event){
-                event.preventDefault();
-                this.patient = this.updatePatient;
-            },
+            // loadUpdatePatientInfo(event){
+            //     event.preventDefault();
+            //     this.patient = this.updatePatient;
+            // },
 
             handleUpdatePatientClick(event) {
                 event.preventDefault();
@@ -91,6 +92,22 @@ export default {
                         console.log(error);
                     })
             },
+            clearForm(event){
+                event.preventDefault();
+                this.patient = ""
+                // this.patientId = "",
+                // this.firstName = "",
+                // this.lastName = "",
+		        // this.gender = "Male",
+		        // this.dob = "",
+		        // this.mobile = "",
+		        // this.email = "",
+		        // this.address = "",
+		        // this.zipCode = "",
+		        // this.surgery = "",
+		        // this.allergies = "",
+		        // this.geneticDisease = ""
+            }
         },
         async mounted() {
 
