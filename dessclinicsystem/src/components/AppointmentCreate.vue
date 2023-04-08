@@ -1,5 +1,6 @@
 <template>
     <div class = "container createPatient">
+        <!-- Appointment details -->
         <h1>Create an Appointment</h1>
         <!-- <h2 v-if="intoNewAppoint">{{intoNewAppoint}}</h2> -->
         <div class="row">
@@ -64,7 +65,7 @@
             </div>
             <div class="col"></div>
             <div class="col">
-                <label class="form-label">Paymant Status: </label>
+                <label class="form-label">Payment Status: </label>
             </div>
             <div class="col">
                 <input class="form-control" type="text" name="paymentStatus" v-model="appointment.paymentStatus">
@@ -84,6 +85,58 @@
             <div class="col">
                 <input class="form-control" type="text" name="amount" v-model="appointment.amount">
             </div>
+
+        <!-- Payment details -->
+        </div>
+            <div class="row">
+                <div class="col">
+                    <h2>Payment:</h2>
+                </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Payment status: </label>
+                </div>
+                <div class="col">
+                    <select class="form-control" v-model="appointment.payment.paymentStatus">
+                        <option value="Paid">PAID</option>
+                        <option value="Pending">PENDING</option>
+                        <option value="Unknown">UNKNOWN</option>
+                    </select>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Payment date: </label>
+                </div>
+                <div class="col">
+                <input class="form-control" type="text" name="paymentDate" v-model="appointment.payment.currentDate">
+                </div>
+            
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Payment method: </label>
+                </div>
+                <div class="col">
+                    <select class="form-control" v-model="appointment.payment.paymentMethod">
+                        <option value="VISA">VISA</option>
+                        <option value="MASTERCARD">MASTERCARD</option>
+                        <option value="OTHER">OTHER</option>
+                    </select>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Insurance company: </label>
+                </div>
+                <div class="col">
+                    <select class="form-control" v-model="appointment.payment.insuranceCompany">
+                        <option value="CGC CANADA">CGC CANADA</option>
+                        <option value="BC HEALTH">BC HEALTH</option>
+                        <option value="OTHER">OTHER</option>
+                    </select>
+                </div>
+            </div>
+            
+
+        </div>    
         </div>
         <button class="btn btn-info btn-lg" @click="handleAddAppointmentClick">Book</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
@@ -92,6 +145,8 @@
 
 <script>
     import AppointmentService from '../services/AppointmentService'
+    import InvoiceService from '../services/InvoiceService'
+
 
     export default {
 
@@ -107,8 +162,11 @@
                 appointment: {
                     patient: {
 
+                    },
+                    payment:{
+                        currentDate: new Date().toISOString().substr(0, 10)
                     }
-                }
+                },
             }
         },
         methods: {
@@ -120,6 +178,7 @@
                     console.log(error.response.data);
                 })
             },
+
             handleAddAppointmentClick(event){
                 event.preventDefault();
                 const newAppointment = {
@@ -131,6 +190,15 @@
                     "quickNote" : this.quickNote,
                     // "doctorTranscript" : this.doctorTranscript,
                     // "paymentStatus" : this.paymentStatus,
+                }
+
+                const newInvoice = {
+                    "paymentDate": this.appointment.payment.currentDate,
+                    "method": this.appointment.payment.paymentMethod,
+                    "amount": this.appointment.amount,
+                    "status": this.appointment.payment.paymentStatus,
+                    "insuranceCompany": this.appointment.payment.insuranceCompany,
+                    "yearsOfPractice": 10
                 }
 
                 AppointmentService.createAppointment(newAppointment)
@@ -145,7 +213,20 @@
 
                     alert("Submitted");
                     this.$router.push({name:'AppointmentInfo'});
+                
+                InvoiceService.createInvoice(newInvoice)
+                    .then(response =>{
+                        const newApp = response.data;
+                        console.log("New Invoice:");
+                        console.log(newApp);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+                    alert("New invoice created");
+
             },
+
             clearForm(event){
                 event.preventDefault();
                 this.appointment.visitDate = "",
@@ -154,8 +235,14 @@
                 this.appointment.doctorTranscript = "",
                 this.appointment.paymentStatus = "",
                 this.appointment.amount = "",
-                this.appointment.patient = ""
+                this.appointment.patient = "",
+                
+                //Payment options
+                this.appointment.payment.paymentMethod = "",
+                this.appointment.payment.paymentStatus = "",
+                this.appointment.payment.insuranceCompany = ""
             },
+
         },
         created(){
             this.getAppointments()
