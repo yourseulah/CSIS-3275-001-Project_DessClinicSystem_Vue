@@ -34,7 +34,8 @@
                 <label class="form-label">Patient Name: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="firstName" v-model="appointment.patient.firstName">
+                <!-- <input class="form-control" type="text" name="firstName" v-model="appointment.patient.firstName" v-model="appointment.patient.lastName"> -->
+                <input class="form-control" type="text" name="firstName" :value="fullName">
             </div>
             <div class="col"></div>
             <div class="col">
@@ -49,7 +50,7 @@
                 <label class="form-label">Patient ID: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="pId" v-model="appointment.patient.patientId">
+                <input class="form-control" type="text" name="pId" v-model="patient.patientId">
             </div>
             <div class="col"></div>
             <div class="col"></div>
@@ -60,7 +61,7 @@
                 <label class="form-label">Mobile: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="mobile" v-model="appointment.patient.mobile">
+                <input class="form-control" type="text" name="mobile" v-model="patient.mobile">
             </div>
             <div class="col"></div>
             <div class="col">
@@ -75,7 +76,7 @@
                 <label class="form-label">Email: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="email" v-model="appointment.patient.email">
+                <input class="form-control" type="text" name="email" v-model="patient.email">
             </div>
             <div class="col"></div>
             <div class="col">
@@ -105,10 +106,18 @@
             return {
                 appointments : [],
                 appointment: {
-                    patient: {
-
-                    }
+                    visitDate: "",
+                    visitTime: "",
+                },
+                patient: {
+                        firstName: "",
+                        lastName: ""
                 }
+            }
+        },
+        computed: {
+            fullName() {
+                return this.patient.firstName + ' ' + this.patient.lastName;
             }
         },
         methods: {
@@ -123,12 +132,13 @@
             handleAddAppointmentClick(event){
                 event.preventDefault();
                 const newAppointment = {
-                    "patient" : this.appointment.patient,
-                    "visitDate" : this.visitDate,
-                    "visitTime" : this.visitTime,
+                    // "patient" : this.appointment.patient,
+                    "patientId" : this.patient.id,
+                    "visitDate" : this.appointment.visitDate,
+                    "visitTime" : this.appointment.visitTime,
                     // "mobileNumber" : this.appointment.patient.mobile,
                     // "email" : this.appointment.patient.email,
-                    "quickNote" : this.quickNote,
+                    "quickNote" : this.appointment.quickNote,
                     // "doctorTranscript" : this.doctorTranscript,
                     // "paymentStatus" : this.paymentStatus,
                 }
@@ -162,7 +172,8 @@
         },
         watch: {
             intoNewAppoint(){
-                this.appointment.patient = this.intoNewAppoint;
+                // this.appointment.patient = this.intoNewAppoint;
+                this.patient = this.intoNewAppoint;
             }
         }
     }

@@ -95,8 +95,8 @@ export default {
             clearForm(event){
                 event.preventDefault();
                 this.patient = ""
-                // this.patientId = "",
-                // this.firstName = "",
+                // this.patient.patientId = "",
+                // this.patient.firstName = "",
                 // this.lastName = "",
 		        // this.gender = "Male",
 		        // this.dob = "",
@@ -123,7 +123,7 @@ export default {
         watch: {
             updatePatient(){
                 this.patient = this.updatePatient;
-            }
+            },
         }
     }
 </script>

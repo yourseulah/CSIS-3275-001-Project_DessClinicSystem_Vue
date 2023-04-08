@@ -1,7 +1,8 @@
 <template>
-    <!-- <div v-if="patient"> -->
-    <div>
+    <div v-if="patient">
+    <!-- <div> -->
         <h2>
+        id: {{ patient.id }}<br />
         Patient ID: {{ patient.patientId }}<br />
         First Name: {{ patient.firstName }}<br />
         Last Name: {{ patient.lastName }}<br />
