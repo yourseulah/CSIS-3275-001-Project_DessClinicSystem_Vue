@@ -6,6 +6,11 @@ class InvoiceService{
     getInvoices(){
         return axios.get(INVOICE_API);
     }
+
+    createInvoice(newInvoice){
+        return axios.post(INVOICE_API, newInvoice);
+    }
+
 }
 
 export default new InvoiceService()
