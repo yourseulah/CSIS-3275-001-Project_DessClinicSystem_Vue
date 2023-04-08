@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- <h3 v-if="newAppoint.patient">(Child to Parent) Patient Name : {{ newAppoint.patient.id }}</h3> -->
-        <h3 v-if="newAppoint">(Child to Parent) Patient Name : {{ newAppoint.id }}</h3>
+        <h3 v-if="newAppoint">(Child to Parent) Patient ID : {{ newAppoint.id }}</h3>
         <div class="row">
             <PatientSearch2 class="col-2" :putPatToNewAppoint="getPatName"></PatientSearch2>
             <div class="col-10">

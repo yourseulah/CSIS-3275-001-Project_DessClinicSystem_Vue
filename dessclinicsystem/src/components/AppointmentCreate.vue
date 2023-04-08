@@ -1,7 +1,7 @@
 <template>
     <div class = "container createPatient">
         <h1>Create an Appointment</h1>
-        <h2 v-if="intoNewAppoint">{{intoNewAppoint}}</h2>
+        <!-- <h2 v-if="intoNewAppoint">{{intoNewAppoint}}</h2> -->
         <div class="row">
             <div class="col">
                 <label class="form-label">Visit Date:</label>
@@ -98,14 +98,8 @@
         name: 'AllAppointments',
         props: {
             intoNewAppoint: {
-                // apatient: {}
             },
-            // xxx: {
-            //     patient: {}
-            // },
-            // newPat: {
 
-            // }
         },
         data(){
             return {
@@ -132,9 +126,6 @@
         },
         watch: {
             intoNewAppoint(){
-                // alert("something new");
-                // console.warn(this.xxx);
-                // this.appointment = this.intoNewAppoint;
                 this.appointment.patient = this.intoNewAppoint;
             }
         }
