@@ -15,10 +15,10 @@
             <tbody>
                 <tr v-for = "appointment in appointments" v-bind:key = "appointment.appointmentId">
                     <td> {{ appointment.appointmentId }}</td>
-                    <td><a class="anchor" @click="deleteAppointment(appointment.appointmentId)">Delete</a></td>
+                    <td><a class="anchor1" @click="deleteAppointment(appointment.appointmentId)">Delete</a></td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
-                    <td v-if="appointment.patient"> {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</td>
+                    <td v-if="appointment.patient"><router-link :to="`/patient/`+appointment.patient.id">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</router-link></td>
                     <td v-else></td>
                     <td> {{ appointment.quickNote }}</td>
                     <!-- <td> {{ appointment.doctorTranscript }}</td> -->
@@ -38,6 +38,7 @@
 
 <script>
     import AppointmentService from '../services/AppointmentService'
+    // import PatientDataService from '@/services/PatientDataService'
 
     export default {
 
@@ -74,7 +75,10 @@
 </script>
 
 <style scoped>
-.anchor {
+.anchor1 {
     color: red;
+}
+.anchor2 {
+    color: #0055ff;
 }
 </style>

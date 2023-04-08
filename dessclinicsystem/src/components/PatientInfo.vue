@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <h3 v-if="patientForUpdate">{{ patientForUpdate.id }}</h3> -->
-        <h3 v-if="childName">(Child to Parent) User Name : {{ childName.id }}</h3>
+        <h3 v-if="childName">(Child to Parent) Patient Id : {{ childName.id }}</h3>
         <PatientSearch :getChild="getChildName"></PatientSearch>
         <br /><br />
         <PatientAdd :updatePatient="childName"></PatientAdd>

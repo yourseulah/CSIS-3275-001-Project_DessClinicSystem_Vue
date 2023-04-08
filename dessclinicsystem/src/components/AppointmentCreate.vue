@@ -11,7 +11,7 @@
             </div>
             <div class="col"></div>
             <div class="col">
-                <label class="form-label">Quite Note: </label>
+                <label class="form-label">Quick Note: </label>
             </div>
             <div class="col">
             <textarea row=2 class="form-control" name="quickNote" v-model="appointment.quickNote"></textarea>
@@ -85,7 +85,7 @@
                 <input class="form-control" type="text" name="amount" v-model="appointment.amount">
             </div>
         </div>
-        <!-- <button class="btn btn-info btn-lg" @click="handleAddPatientClick">Save</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button> -->
+        <button class="btn btn-info btn-lg" @click="handleAddAppointmentClick">Book</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
 </template>
 
@@ -119,7 +119,43 @@
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
-            }
+            },
+            handleAddAppointmentClick(event){
+                event.preventDefault();
+                const newAppointment = {
+                    "patient" : this.appointment.patient,
+                    "visitDate" : this.visitDate,
+                    "visitTime" : this.visitTime,
+                    // "mobileNumber" : this.appointment.patient.mobile,
+                    // "email" : this.appointment.patient.email,
+                    "quickNote" : this.quickNote,
+                    // "doctorTranscript" : this.doctorTranscript,
+                    // "paymentStatus" : this.paymentStatus,
+                }
+
+                AppointmentService.createAppointment(newAppointment)
+                    .then(response => {
+                        const newApp = response.data;
+                        console.log("New Appointment:");
+                        console.log(newApp);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+
+                    alert("Submitted");
+                    this.$router.push({name:'AppointmentInfo'});
+            },
+            clearForm(event){
+                event.preventDefault();
+                this.appointment.visitDate = "",
+                this.appointment.visitTime = "",
+                this.appointment.quickNote = "",
+                this.appointment.doctorTranscript = "",
+                this.appointment.paymentStatus = "",
+                this.appointment.amount = "",
+                this.appointment.patient = ""
+            },
         },
         created(){
             this.getAppointments()

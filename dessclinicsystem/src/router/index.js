@@ -13,6 +13,7 @@ import PatientUpdate2 from "../components/PatientUpdate2.vue";
 import PatientDelete from "../components/PatientDelete.vue";
 import PatientSearch from "../components/PatientSearch.vue";
 import PatientSearch2 from "../components/PatientSearch2.vue";
+import PatientDetails from "@/components/PatientDetails";
 
 const routes = [
     {
@@ -67,12 +68,12 @@ const routes = [
     },
     {
         name: "PatientUpdate",
-        path: "/patient/:id",
+        path: "/patients/:id",
         component: PatientUpdate
     },
     {
         name: "PatientUpdate2",
-        path: "/patient/:id",
+        path: "/patients/:id",
         component: PatientUpdate2
     },
     {
@@ -84,6 +85,11 @@ const routes = [
         name: "PatientSearch2",
         path: "/patientSearch2",
         component: PatientSearch2
+    },
+    {
+        name: "PatientDetails",
+        path: "/patient/:id",
+        component: PatientDetails
     },
 ];
 
