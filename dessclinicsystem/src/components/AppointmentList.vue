@@ -1,7 +1,7 @@
 <template>
     <div class = "container">
         <h1 class="text-center">Appointment List</h1>
-        <table class="table table-striped">
+        <table v-if="appointments" class="table table-striped">
             <thead>
                 <th>ID</th>
                 <th>Delete</th>
@@ -15,7 +15,7 @@
             <tbody>
                 <tr v-for = "appointment in appointments" v-bind:key = "appointment.appointmentId">
                     <td> {{ appointment.appointmentId }}</td>
-                    <td>delete(not linked yet)</td>
+                    <td><a class="anchor" @click="deleteAppointment(appointment.appointmentId)">Delete</a></td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
                     <td v-if="appointment.patient"> {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</td>
@@ -31,6 +31,7 @@
                 </tr>
             </tbody>
         </table>
+        <h1 v-else>There is no coming appointments!</h1>
     </div>
 </template>
 
@@ -54,10 +55,26 @@
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
-            }
+            },
+            deleteAppointment(id){
+                                
+                let result;
+                result = AppointmentService.deleteAppointment(id);
+                                
+                console.warn(result);
+                alert("Submitted");
+                
+                this.getAppointments()
+            },
         },
         created(){
             this.getAppointments()
         }
     }
 </script>
+
+<style scoped>
+.anchor {
+    color: red;
+}
+</style>

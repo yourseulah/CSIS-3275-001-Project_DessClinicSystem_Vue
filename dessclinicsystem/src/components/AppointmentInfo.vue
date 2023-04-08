@@ -33,8 +33,6 @@ export default{
             newAppoint: {
                 // patient: null
             },
-            xxx: "xxx",
-            newpat: null
             }
     },
     methods: {

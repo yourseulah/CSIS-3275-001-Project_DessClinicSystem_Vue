@@ -1,10 +1,11 @@
-import axios from "axios"
-
-const APPOINTMENT_API = 'http://localhost:8080/api/appointments'
+import http from "../http-common";
 
 class AppointmentService{
     getAppointments(){
-        return axios.get(APPOINTMENT_API);
+        return http.get('/appointments');
+    }
+    deleteAppointment(id){
+        return http.delete(`/appointments/${id}`);
     }
 }
 
