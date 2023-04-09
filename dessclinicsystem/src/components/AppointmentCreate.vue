@@ -36,7 +36,7 @@
             </div>
             <div class="col">
                 <!-- <input class="form-control" type="text" name="firstName" v-model="appointment.patient.firstName" v-model="appointment.patient.lastName"> -->
-                <input class="form-control" type="text" name="firstName" :value="fullName">
+                <input v-if="patient" class="form-control" type="text" name="firstName" :value="fullName">
             </div>
             <div class="col"></div>
             <div class="col">
@@ -161,10 +161,12 @@
             return {
                 appointments : [],
                 appointment: {
-                    patient: {
 
-                    },
                 },
+                patient: {
+                    firstName: "",
+                    lastName: ""
+                },                
                 payment:{
                     currentDate: new Date().toISOString().substr(0, 10),
                     paymentMethod: '',
@@ -176,6 +178,7 @@
 
         computed: {
             fullName() {
+                // if (typeof patient === 'undefined') return "";
                 return this.patient.firstName + ' ' + this.patient.lastName;
             }  
         },
@@ -238,6 +241,8 @@
                     })
                     alert("New invoice created");
 
+                this.$forceUpdate();
+                // this.$router.push({name:'AppointmentInfo'});
             },
 
             clearForm(event){

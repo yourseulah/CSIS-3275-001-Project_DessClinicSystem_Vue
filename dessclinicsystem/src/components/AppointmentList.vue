@@ -18,16 +18,13 @@
                     <td><a class="anchor1" @click="deleteAppointment(appointment.appointmentId)">Delete</a></td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
-                    <td v-if="appointment.patient"><router-link :to="`/patient/`+appointment.patient.id">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</router-link></td>
-                    <td v-else></td>
+                    <!-- <td> <router-link :to="`/patient/`+appointment.patientId">{{ computedPatientName(appointment.patientId) }}</router-link></td> -->
+                    <td> <router-link :to="`/patient/`+appointment.patientId">xxx</router-link></td>
                     <td> {{ appointment.quickNote }}</td>
-                    <!-- <td> {{ appointment.doctorTranscript }}</td> -->
                     <td v-if="appointment.paymentStatus===0">Unpaid</td>
                     <td v-else>Paid</td>
-                    <!-- <td> {{ appointment.paymentStatus }}</td> -->
                     <td v-if="appointment.amount===0">-</td>
                     <td v-else> {{ appointment.amount }}</td>
-                    <!-- <td> {{ appointment.amount }}</td> -->
                 </tr>
             </tbody>
         </table>
@@ -45,7 +42,13 @@
         name: 'AllAppointments',
         data(){
             return {
-                appointments : []
+                appointments : [],
+                appointment: {},
+                patient: {
+                    id: "",
+                    firstName: "",
+                    lastName: ""
+                }
             }
         },
         methods: {
@@ -69,7 +72,27 @@
             },
         },
         created(){
-            this.getAppointments()
+            this.getAppointments();
+        },
+        // computed: {
+        //     computedPatientName(d){
+        //         PatientDataService.retreivePatient(d)
+        //         .then((response)=>{
+        //             this.patient.firstName = response.data.firstName;
+        //             console.warn("OK: "+this.patient.firstName);
+        //             return this.patient.firstName;
+        //         }).catch(error => {
+        //             console.log(error.response.data);
+        //             return '';
+        //         })
+        //         return '';
+        //     }
+        // }
+
+        watch: {
+            appointments() {
+                this.getAppointments()
+            }
         }
     }
 </script>
