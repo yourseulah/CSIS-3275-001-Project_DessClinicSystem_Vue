@@ -64,13 +64,7 @@
             <div class="col">
                 <input class="form-control" type="text" name="mobile" v-model="patient.mobile">
             </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Payment Status: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="paymentStatus" v-model="appointment.paymentStatus">
-            </div>
+            <div class="col"></div><div class="col"></div><div class="col"></div>
         </div>
         <div class="row">
             <div class="col">
@@ -79,13 +73,7 @@
             <div class="col">
                 <input class="form-control" type="text" name="email" v-model="patient.email">
             </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Amount:</label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="amount" v-model="appointment.amount">
-            </div>
+            <div class="col"></div><div class="col"></div><div class="col"></div>
 
         <!-- Payment details -->
         </div>
@@ -200,6 +188,7 @@
                     "patientId" : this.patient.id,
                     "visitDate" : this.appointment.visitDate,
                     "visitTime" : this.appointment.visitTime,
+                    "patientName" : this.patient.firstName+' '+this.patient.lastName,
                     // "mobileNumber" : this.appointment.patient.mobile,
                     // "email" : this.appointment.patient.email,
                     "quickNote" : this.appointment.quickNote,

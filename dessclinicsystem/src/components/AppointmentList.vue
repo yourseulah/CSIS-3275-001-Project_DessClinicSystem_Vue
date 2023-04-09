@@ -19,7 +19,7 @@
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
                     <!-- <td> <router-link :to="`/patient/`+appointment.patientId">{{ computedPatientName(appointment.patientId) }}</router-link></td> -->
-                    <td> <router-link :to="`/patient/`+appointment.patientId">xxx</router-link></td>
+                    <td> <router-link :to="`/patient/`+appointment.patientId">{{ appointment.patientName }}</router-link></td>
                     <td> {{ appointment.quickNote }}</td>
                     <td v-if="appointment.paymentStatus===0">Unpaid</td>
                     <td v-else>Paid</td>
