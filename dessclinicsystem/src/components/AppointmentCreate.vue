@@ -74,13 +74,13 @@
                 <input class="form-control" type="text" name="email" v-model="patient.email">
             </div>
             <div class="col"></div><div class="col"></div><div class="col"></div>
-
-        <!-- Payment details -->
         </div>
+        <!-- Payment details -->
             <div class="row">
                 <div class="col">
                     <h2>Payment:</h2>
                 </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <label class="form-label">Payment status: </label>
@@ -99,7 +99,7 @@
                 <div class="col">
                 <input class="form-control" type="text" name="paymentDate" v-model="payment.currentDate">
                 </div>
-            
+            </div>
             <div class="row">
                 <div class="col">
                     <label class="form-label">Payment method: </label>
@@ -123,10 +123,14 @@
                     </select>
                 </div>
             </div>
-            
-
-        </div>    
-        </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Amount: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="amount" v-model="appointment.amount">
+                </div><div class="col"></div><div class="col"></div><div class="col"></div>
+            </div>
         <button class="btn btn-info btn-lg" @click="handleAddAppointmentClick">Book</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
 </template>
