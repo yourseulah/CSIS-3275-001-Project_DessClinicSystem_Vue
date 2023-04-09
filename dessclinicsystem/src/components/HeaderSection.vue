@@ -14,6 +14,7 @@
 .navbar{
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
+  height: 50px;
   width: 100%; /* Full width */
 }
 </style>

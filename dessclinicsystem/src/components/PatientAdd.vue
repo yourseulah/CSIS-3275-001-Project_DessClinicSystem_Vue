@@ -134,40 +134,44 @@ export default {
 		            allergies: "",
 		            geneticDisease: "",
                     id: "",
-                }
-            };
-            // return {
-            //     patientId: "",
-            //     firstName: "",
-		    //     lastName: "",
-		    //     gender: "Male",
-		    //     dob: "",
-		    //     mobile: "",
-		    //     email: "",
-		    //     address: "",
-		    //     zipCode: "",
-		    //     surgery: "",
-		    //     allergies: "",
-		    //     geneticDisease: "",
+                },
             // };
+            // return {
+                // patientId: "",
+                // firstName: "",
+		        // lastName: "",
+		        // gender: "Male",
+		        // dob: "",
+		        // mobile: "",
+		        // email: "",
+		        // address: "",
+		        // zipCode: "",
+		        // surgery: "",
+		        // allergies: "",
+		        // geneticDisease: "",
+            };
         },
         methods: {
             handleAddPatientClick(event) {
                 event.preventDefault();
-                const newPatient = {
-                    "patientId" : this.patientId,
-                    "firstName" : this.firstName,
-		            "lastName" : this.lastName,
-		            "gender" : this.gender,
-		            "dob" : this.dob,
-		            "mobile" : this.mobile,
-		            "email" : this.email,
-		            "address" : this.address,
-		            "zipCode" : this.zipCode,
-		            "surgery" : this.surgery,
-		            "allergies" : this.allergies,
-		            "geneticDisease" : this.geneticDisease
-                }
+                const newPatient = this.patient;
+                // = {
+
+                    // "patientId" : this.patientId,
+                    // "firstName" : this.firstName,
+		            // "lastName" : this.lastName,
+		            // "gender" : this.gender,
+		            // "dob" : this.dob,
+		            // "mobile" : this.mobile,
+		            // "email" : this.email,
+		            // "address" : this.address,
+		            // "zipCode" : this.zipCode,
+		            // "surgery" : this.surgery,
+		            // "allergies" : this.allergies,
+		            // "geneticDisease" : this.geneticDisease
+                // }
+
+                console.log(newPatient);
 
                 PatientDataService.addPatient(newPatient)
                     .then(response => {
