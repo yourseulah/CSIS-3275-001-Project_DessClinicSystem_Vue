@@ -8,7 +8,10 @@
                 <label class="form-label">Visit Date:</label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="visitDate" v-model="appointment.visitDate">
+                <!-- <input class="form-control" type="text" name="visitDate" v-model="appointment.visitDate"> -->
+                <select class="form-control" v-model="appointment.visitDate">
+                    <option v-for="option in dates" :key="option.value" :value="option.value">{{ option.label }}</option>
+                </select>
             </div>
             <div class="col"></div>
             <div class="col">
@@ -23,7 +26,10 @@
                 <label class="form-label">Visit Time: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="visitTime" v-model="appointment.visitTime">
+                <!-- <input class="form-control" type="text" name="visitTime" v-model="appointment.visitTime"> -->
+                <select class="form-control" v-model="appointment.visitTime">
+                    <option v-for="option in timeSlots" :key="option.value" :value="option.value">{{ option.label }}</option>
+                </select>
             </div>
             <div class="col"></div>
             <div class="col"></div>
@@ -164,7 +170,9 @@
                     paymentMethod: '',
                     paymentStatus: '',
                     insuranceCompany: '',
-                }
+                },
+                timeSlots: [],
+                dates: [],
             }    
         },
 
@@ -263,7 +271,36 @@
                 // this.appointment.patient = this.intoNewAppoint;
                 this.patient = this.intoNewAppoint;
             }
-        }
+        },
+        mounted() {
+            const startDate = new Date();
+            startDate.setHours(9); // Start at 9:00 AM
+            startDate.setMinutes(0);
+
+            for (let i = 1; i < 20; i++) {
+            const label = startDate.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+            });
+            const value = label;
+            this.timeSlots.push({ label, value });
+
+            startDate.setMinutes(startDate.getMinutes() + 30); // Increment by 30 minutes
+            }
+
+            startDate.setHours(0, 0, 0, 0);
+
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                const value = `${year}-${month}-${day}`;
+                const label = value;
+                this.dates.push({ label, value });
+            }
+        },
     }
 </script>
 
