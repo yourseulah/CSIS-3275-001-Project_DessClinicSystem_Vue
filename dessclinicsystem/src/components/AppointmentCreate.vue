@@ -57,8 +57,14 @@
                 <input class="form-control" type="text" name="pId" v-model="patient.patientId">
             </div>
             <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
+            <div class="col">
+                <label class="form-label">Doctor: </label>
+            </div>
+            <div class="col">
+                <select v-if="doctors" class="form-control" v-model="appointment.doctorId">
+                    <option v-for="doctor in doctors" :key="doctor.dId" :value="doctor.dId">Dr. {{ doctor.dFName }} {{ doctor.dLName }}</option>
+                </select>
+            </div>
         </div>
         <div class="row">
             <div class="col">
@@ -142,7 +148,7 @@
 <script>
     import AppointmentService from '../services/AppointmentService'
     import InvoiceService from '../services/InvoiceService'
-
+    import DoctorDataService from '@/services/DoctorDataService'
 
     export default {
 
@@ -170,6 +176,11 @@
                 },
                 timeSlots: [],
                 dates: [],
+
+                doctors: [],
+                doctor: {
+
+                },
             }    
         },
 
@@ -193,17 +204,11 @@
             handleAddAppointmentClick(event){
                 event.preventDefault();
                 const newAppointment = {
-                    // "patient" : this.appointment.patient,
                     "patient" : this.patient,
-                    // "patientId" : this.patient.id,
                     "visitDate" : this.appointment.visitDate,
                     "visitTime" : this.appointment.visitTime,
-                    // "patientName" : this.patient.firstName+' '+this.patient.lastName,
-                    // "mobileNumber" : this.appointment.patient.mobile,
-                    // "email" : this.appointment.patient.email,
                     "quickNote" : this.appointment.quickNote,
-                    // "doctorTranscript" : this.doctorTranscript,
-                    // "paymentStatus" : this.paymentStatus,
+                    "doctorId" : this.appointment.doctorId,
                 }
 
                 const newInvoice = {
@@ -217,6 +222,7 @@
 
                 AppointmentService.createAppointment(newAppointment)
                     .then(response => {
+                        // console.log(newAppointment);
                         const newApp = response.data;
                         console.log("New Appointment:");
                         console.log(newApp);
@@ -225,7 +231,7 @@
                         console.log(error);
                     })
 
-                    alert("Submitted");
+                    alert("New appointment created");
                     this.$router.push({name:'AppointmentInfo'});
                 
                 InvoiceService.createInvoice(newInvoice)
@@ -260,6 +266,15 @@
                 this.appointment.payment.insuranceCompany = ""
             },
 
+            getDoctors() {
+                DoctorDataService.getDoctors().then((response) =>{
+                    this.doctors = response.data;
+                    // console.log(this.doctors);
+                }).catch(error => {
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
+            },
         },
         created(){
             this.getAppointments()
@@ -298,6 +313,8 @@
                 const label = value;
                 this.dates.push({ label, value });
             }
+
+            this.getDoctors();
         },
     }
 </script>

@@ -24,14 +24,21 @@
             </tbody>
         </table>
     </div>
+    <doctor-add></doctor-add>
 </template>
 
 
 <script>
     import DoctorDataService from '../services/DoctorDataService'
+    import DoctorAdd from '@/components/DoctorAdd.vue'
 
     export default {
         name: 'AllDoctors',
+
+        components:{
+            DoctorAdd
+        },
+
         data(){
             return {
                 doctors : []

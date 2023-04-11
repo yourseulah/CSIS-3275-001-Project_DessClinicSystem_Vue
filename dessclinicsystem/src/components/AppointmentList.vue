@@ -8,6 +8,7 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Name</th>
+                <th>Doctor</th>
                 <th>Note</th>
                 <th>Status</th>
                 <th>Amount</th>
@@ -20,6 +21,7 @@
                     <td> {{ appointment.visitTime }}</td>
                     <!-- <td> <router-link :to="`/patient/`+appointment.patientId">{{ computedPatientName(appointment.patientId) }}</router-link></td> -->
                     <td> <router-link :to="`/patient/`+appointment.patient.id">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</router-link></td>
+                    <td v-if="doctors"> Dr. {{ getDoctorName(appointment.doctorId) }}</td>
                     <td> {{ appointment.quickNote }}</td>
                     <td v-if="appointment.paymentStatus===0">Unpaid</td>
                     <td v-else>Paid</td>
@@ -35,7 +37,7 @@
 
 <script>
     import AppointmentService from '../services/AppointmentService'
-    // import PatientDataService from '@/services/PatientDataService'
+    import DoctorDataService from '@/services/DoctorDataService'
 
     export default {
 
@@ -48,7 +50,8 @@
                     id: "",
                     firstName: "",
                     lastName: ""
-                }
+                },
+                doctors: [],
             }
         },
         methods: {
@@ -76,24 +79,27 @@
                 
                 this.getAppointments()
             },
+
+            getDoctors() {
+                DoctorDataService.getDoctors().then((response) =>{
+                    this.doctors = response.data;
+                    // console.log(this.doctors);
+                }).catch(error => {
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
+            },
+
+            getDoctorName(id) {
+                // if (typeof patient === 'undefined') return "";
+                let doctor = this.doctors.find(doctor => doctor.dId === id);
+                return doctor.dFName;
+            }  
         },
         created(){
             this.getAppointments();
+            this.getDoctors();
         },
-        // computed: {
-        //     computedPatientName(d){
-        //         PatientDataService.retreivePatient(d)
-        //         .then((response)=>{
-        //             this.patient.firstName = response.data.firstName;
-        //             console.warn("OK: "+this.patient.firstName);
-        //             return this.patient.firstName;
-        //         }).catch(error => {
-        //             console.log(error.response.data);
-        //             return '';
-        //         })
-        //         return '';
-        //     }
-        // }
 
         watch: {
             appointments() {

@@ -7,6 +7,9 @@ class DoctorDataService {
     getDoctors(){
         return http.get('/doctors');
     }
+    addDoctor(newDoctor){
+        return http.post(`/doctors`, newDoctor);
+    }
 }
 
 export default new DoctorDataService();
