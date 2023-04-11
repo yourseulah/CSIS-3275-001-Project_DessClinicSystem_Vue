@@ -69,7 +69,7 @@ export default {
         props: {
             updateDoctor: {
                 // id: ""
-            }
+            },
         },
 
         data(){
@@ -103,8 +103,11 @@ export default {
                     })
 
                     alert("Submitted");
-                    
-                    this.$router.push({name:'Doctorlist'});
+
+                    this.emitRefresh();
+            },
+            emitRefresh() {
+                this.$emit('refreshed','yes');
             },
             clearForm(event){
                 event.preventDefault();

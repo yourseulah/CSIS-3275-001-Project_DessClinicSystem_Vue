@@ -24,7 +24,7 @@
             </tbody>
         </table>
     </div>
-    <doctor-add></doctor-add>
+    <doctor-add @refreshed="refreshPage"></doctor-add>
 </template>
 
 
@@ -33,7 +33,7 @@
     import DoctorAdd from '@/components/DoctorAdd.vue'
 
     export default {
-        name: 'AllDoctors',
+        name: 'DoctorList',
 
         components:{
             DoctorAdd
@@ -41,7 +41,7 @@
 
         data(){
             return {
-                doctors : []
+                doctors : [],
             }
         },
         methods: {
@@ -52,11 +52,15 @@
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
+            },
+            refreshPage(){
+                this.getDoctors();
             }
         },
 
         created(){
             this.getDoctors()
-        }
+        },
+
     }
 </script>
