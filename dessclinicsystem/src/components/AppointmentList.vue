@@ -93,7 +93,7 @@
             getDoctorName(id) {
                 // if (typeof patient === 'undefined') return "";
                 let doctor = this.doctors.find(doctor => doctor.dId === id);
-                return doctor.dFName;
+                return doctor.dLName;
             }  
         },
         created(){
