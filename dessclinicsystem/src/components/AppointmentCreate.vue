@@ -216,8 +216,7 @@
                     "method": this.payment.paymentMethod,
                     "amount": this.appointment.amount,
                     "status": this.payment.paymentStatus,
-                    "insuranceCompany": this.payment.insuranceCompany,
-                    "yearsOfPractice": 10
+                    "insuranceCompany": this.payment.insuranceCompany
                 }
 
                 AppointmentService.createAppointment(newAppointment)
