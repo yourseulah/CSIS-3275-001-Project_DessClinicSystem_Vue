@@ -53,7 +53,9 @@
             <div class="col"></div><div class="col"></div><div class="col"></div>
         </div>
 
-        <button class="btn btn-info btn-lg" @click="handleAddDoctorClick">Save</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
+        <button class="btn btn-info btn-lg" @click="handleAddDoctorClick">Save</button>
+        <button class="btn btn-info btn-lg" @click="handleUpdateDoctorClick">Update</button>
+        <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
 </template>
 
@@ -70,6 +72,7 @@ export default {
             updateDoctor: {
                 // id: ""
             },
+
         },
 
         data(){
@@ -112,10 +115,27 @@ export default {
             clearForm(event){
                 event.preventDefault();
                 this.doctor = ""
-            }
+            },
+            handleUpdateDoctorClick(event){
+                console.log(this.doctor);
+
+                event.preventDefault();
+                DoctorDataService.updateDoctor(this.doctor.dId, this.doctor)
+                    .then(response => {
+                        const updatedDoc = response.data;
+                        console.log("Updated Doctor:");
+                        console.log(updatedDoc);
+
+                        alert("Doctor is updated");
+                        this.$router.push('/doctorlist');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+                }
         },
         watch: {
-            updatePatient(){
+            updateDoctor(){
                 // alert("something new");
                 this.doctor = this.updateDoctor;
             }

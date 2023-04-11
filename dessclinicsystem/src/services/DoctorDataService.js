@@ -10,6 +10,9 @@ class DoctorDataService {
     addDoctor(newDoctor){
         return http.post(`/doctors`, newDoctor);
     }
+    updateDoctor(id, updatedDoctor){
+        return http.put(`/doctors/${id}`, updatedDoctor);
+    }
 }
 
 export default new DoctorDataService();

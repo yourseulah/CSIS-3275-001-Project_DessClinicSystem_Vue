@@ -36,8 +36,6 @@
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
                     <td>
-                        <!-- <router-link :to="'/patient/'+patient.id">Update</router-link> -->
-                        <!-- <router-link :to="'/patient/'+patient.id"><button @click="navigate" role="link">Update</button></router-link> -->
                         <button v-on:click="getChild(patient)">Update</button>
                         <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
                     </td>
@@ -63,7 +61,7 @@
                 queryStr: "",
                 NotFound: "",
                 patients : [],
-                // patient: null
+                //patient: null
             }
         },
         methods: {
@@ -80,17 +78,37 @@
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
-            }
+            },
+            handleDeletePatientClick(id){
+            
+            console.log("id:"+id);
+
+                        PatientDataService.deletePatient(id)
+                        .then(response => {
+                            console.log(response.data);
+                        }).catch(error => {
+                            this.message = error.response.data.message;
+                            console.log(error.response.data);
+                        })
+        
+                        alert("Patient Deleted!");
+
+
+                        PatientDataService.searchPatient(this.queryStr)
+                    .then(response =>{
+                    this.result = true;
+                    this.patients = response.data;
+                    this.NotFound = "";
+                }).catch(error => {
+                    this.result = false;
+                    this.NotFound = "Found no match...";
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
+        
+                    },
         },
 
-        handleDeletePatientClick(id){
-                    
-        let result;
-        result = PatientDataService.deletePatient(id);
-    
-        console.warn(result);
-        alert("Submitted");
 
-        },
     }
 </script>

@@ -10,6 +10,7 @@
                 <th>Date of Birth</th>
                 <th>Specialty</th>
                 <th>Years of Practice</th>
+                <th>ACTIONS</th>
             </thead>
             <tbody>
                 <tr v-for = "doctor in doctors" v-bind:key = "doctor.dId">
@@ -20,11 +21,15 @@
                     <td> {{ doctor.dDoB }}</td>
                     <td> {{ doctor.major }}</td>
                     <td> {{ doctor.dYoP }}</td>
+                    <td>
+                        <button v-on:click="getChild(doctor)">Update</button>
+                        <button v-on:click="handleDeleteDoctorClick(doctor.dId)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <doctor-add @refreshed="refreshPage"></doctor-add>
+    <doctor-add @refreshed="refreshPage" :updateDoctor="doctor"></doctor-add>
 </template>
 
 
@@ -42,9 +47,13 @@
         data(){
             return {
                 doctors : [],
+                doctor: null
             }
         },
         methods: {
+            getChild(doctor){
+                this.doctor=doctor;
+            },
             getDoctors(){
                 DoctorDataService.getDoctors().then((response) =>{
                     this.doctors = response.data;
@@ -52,6 +61,21 @@
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
+            },
+            handleDeleteDoctorClick(id){
+
+                console.log("id:"+ id);
+        
+                DoctorDataService.deleteDoctor(id)
+                .then(response => {
+                    console.log(response.data);
+                }).catch(error => {
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
+
+                alert("Doctor Deleted!");
+                this.refreshPage()
             },
             refreshPage(){
                 this.getDoctors();

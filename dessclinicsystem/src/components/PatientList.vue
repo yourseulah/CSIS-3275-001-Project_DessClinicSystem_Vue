@@ -72,29 +72,22 @@
             },
 
             handleDeletePatientClick(id){
-                                
-                let result;
-                result = PatientDataService.deletePatient(id);
-                
-                console.warn(result);
-                alert("Submitted");
+
+                console.log("id:"+ id);
+                        
+                PatientDataService.deletePatient(id)
+                .then(response => {
+                    console.log(response.data);
+                }).catch(error => {
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
+
+                alert("Patient Deleted!");
 
                 this.retreiveAllPatients()
             },
 
-            // updatePatientClick(id) {
-            //     let patientForUpdate = {
-            //         id: id,
-            //     }
-            //     this.setPatientForUpdate(patientForUpdate);
-            // },
-
-            // putPatientDetailsToProps(patient) {
-            //     let patientForUpdate = {
-            //         patient: patient,
-            //     }
-            //     // this.setPatientForUpdate(patientForUpdate);
-            // }
         },
         created(){
             this.retreiveAllPatients()

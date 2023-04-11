@@ -99,7 +99,9 @@
                 <input class="form-control" type="text" name="patientID" v-model="patient.patientId">
             </div>
         </div>
-        <button class="btn btn-info btn-lg" @click="handleAddPatientClick">Save</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
+        <button class="btn btn-info btn-lg" @click="handleAddPatientClick">Save</button>
+        <button class="btn btn-info btn-lg" @click="handleUpdatePatientClick">Update</button>
+        <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
 </template>
 
@@ -183,7 +185,7 @@ export default {
                         console.log(error);
                     })
 
-                    alert("Submitted");
+                    alert("Patient is created");
                     this.$router.push({name:'PatientInfo'});
             },
             clearForm(event){
@@ -201,6 +203,21 @@ export default {
 		        // this.surgery = "",
 		        // this.allergies = "",
 		        // this.geneticDisease = ""
+            },
+            handleUpdatePatientClick(event){
+                event.preventDefault();
+                PatientDataService.updatePatient(this.patient.id, this.patient)
+                    .then(response => {
+                        const updatedPat = response.data;
+                        console.log("Updated Patient:");
+                        console.log(updatedPat);
+
+                        alert("Patient is updated");
+                        this.$router.push({name:'PatientInfo'});
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             }
         },
         watch: {

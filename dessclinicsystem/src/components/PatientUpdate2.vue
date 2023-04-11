@@ -57,10 +57,6 @@ export default {
             };
         },
         methods: {
-            // loadUpdatePatientInfo(event){
-            //     event.preventDefault();
-            //     this.patient = this.updatePatient;
-            // },
 
             handleUpdatePatientClick(event) {
                 event.preventDefault();
