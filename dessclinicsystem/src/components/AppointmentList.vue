@@ -8,8 +8,9 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Name</th>
-                <th>Doctor</th>
+                <!-- <th>Doctor</th> -->
                 <th>Note</th>
+                <th>Invoice ID</th>
                 <th>Status</th>
                 <th>Amount</th>
             </thead>
@@ -21,12 +22,11 @@
                     <td> {{ appointment.visitTime }}</td>
                     <!-- <td> <router-link :to="`/patient/`+appointment.patientId">{{ computedPatientName(appointment.patientId) }}</router-link></td> -->
                     <td> <router-link :to="`/patient/`+appointment.patient.id">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</router-link></td>
-                    <td v-if="doctors"> Dr. {{ getDoctorName(appointment.doctorId) }}</td>
+                    <!-- <td v-if="doctors"> Dr. {{ getDoctorName(appointment.doctorId) }}</td> -->
                     <td> {{ appointment.quickNote }}</td>
-                    <td v-if="appointment.paymentStatus===0">Unpaid</td>
-                    <td v-else>Paid</td>
-                    <td v-if="appointment.amount===0">-</td>
-                    <td v-else> {{ appointment.amount }}</td>
+                    <td> <router-link :to="`/invoice/`+appointment.invoice.id"> {{ appointment.invoice.id }} </router-link></td>
+                    <td> {{ appointment.invoice.status }}</td>
+                    <td> {{ appointment.invoice.amount }}</td>
                 </tr>
             </tbody>
         </table>

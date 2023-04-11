@@ -14,6 +14,7 @@ import PatientDelete from "../components/PatientDelete.vue";
 import PatientSearch from "../components/PatientSearch.vue";
 import PatientSearch2 from "../components/PatientSearch2.vue";
 import PatientDetails from "@/components/PatientDetails";
+import InvoiceDetails from "../components/InvoiceDetails";
 
 const routes = [
     {
@@ -91,6 +92,11 @@ const routes = [
         path: "/patient/:id",
         component: PatientDetails
     },
+    {
+        name: "InvoiceDetails",
+        path: "/invoice/:id",
+        component: InvoiceDetails
+    }
 ];
 
 const router = createRouter({

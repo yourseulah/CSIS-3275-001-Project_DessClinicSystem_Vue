@@ -181,6 +181,8 @@
                 doctor: {
 
                 },
+
+                paymentID: 0
             }    
         },
 
@@ -203,13 +205,14 @@
 
             handleAddAppointmentClick(event){
                 event.preventDefault();
+
                 const newAppointment = {
                     "patient" : this.patient,
                     "visitDate" : this.appointment.visitDate,
                     "visitTime" : this.appointment.visitTime,
                     "quickNote" : this.appointment.quickNote,
                     "doctorId" : this.appointment.doctorId,
-                }
+                }    
 
                 const newInvoice = {
                     "paymentDate": this.payment.currentDate,
@@ -219,26 +222,25 @@
                     "insuranceCompany": this.payment.insuranceCompany
                 }
 
-                AppointmentService.createAppointment(newAppointment)
-                    .then(response => {
-                        // console.log(newAppointment);
-                        const newApp = response.data;
-                        console.log("New Appointment:");
-                        console.log(newApp);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-
-                    alert("New appointment created");
-                    this.$router.push({name:'AppointmentInfo'});
-                
                 InvoiceService.createInvoice(newInvoice)
                     .then(response =>{
                         const newApp = response.data;
-                        const paymentID = response.data.id;
+                        this.paymentID = response.data.id;
                         console.log(newApp);
-                        console.log('Payment id:', paymentID);
+
+                            AppointmentService.createAppointment(this.paymentID, newAppointment)
+                            .then(response => {
+                                const newApp = response.data;
+                                console.log("New Appointment:");
+                                console.log(newApp);
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            })
+
+                            alert("New appointment created");
+                            this.$router.push({name:'AppointmentInfo'});
+
                     })
                     .catch(error => {
                         console.log(error);
