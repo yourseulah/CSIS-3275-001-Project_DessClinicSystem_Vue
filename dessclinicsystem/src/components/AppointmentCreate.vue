@@ -8,7 +8,7 @@
                 <label class="form-label">Visit Date:</label>
             </div>
             <div class="col">
-                <select class="form-control" v-model="appointment.visitDate">
+                <select class="form-control" :value=appointment.visitDate v-model="appointment.visitDate">
                     <option v-for="option in dates" :key="option.value" :value="option.value">{{ option.label }}</option>
                 </select>
             </div>
@@ -96,7 +96,7 @@
                     <label class="form-label">Payment status: </label>
                 </div>
                 <div class="col">
-                    <select class="form-control" v-model="payment.paymentStatus">
+                    <select class="form-control" SELECTED value="Pending" v-model="payment.paymentStatus">
                         <option value="Paid">PAID</option>
                         <option value="Pending">PENDING</option>
                         <option value="Unknown">UNKNOWN</option>
@@ -163,7 +163,7 @@
             return {
                 appointments : [],
                 appointment: {
-
+                    visitDate: new Date().toISOString().substr(0, 10),
                 },
                 patient: {
                     firstName: "",
@@ -172,7 +172,7 @@
                 payment:{
                     currentDate: new Date().toISOString().substr(0, 10),
                     paymentMethod: '',
-                    paymentStatus: '',
+                    paymentStatus: 'Pending',
                     insuranceCompany: '',
                 },
                 timeSlots: [],
@@ -229,6 +229,7 @@
                         this.paymentID = response.data.id;
                         console.log(newApp);
 
+
                             AppointmentService.createAppointment(this.paymentID, newAppointment)
                             .then(response => {
                                 const newApp = response.data;
@@ -240,14 +241,14 @@
                             })
 
                             alert("New appointment created");
+                            alert("New invoice created");
                             this.$router.push({name:'AppointmentInfo'});
 
                     })
                     .catch(error => {
                         console.log(error);
                     })
-                    alert("New invoice created");
-
+                    
                 this.$forceUpdate();
                 // this.$router.push({name:'AppointmentInfo'});
             },
@@ -288,6 +289,7 @@
             }
         },
         mounted() {
+
             const startDate = new Date();
             startDate.setHours(9); // Start at 9:00 AM
             startDate.setMinutes(0);
