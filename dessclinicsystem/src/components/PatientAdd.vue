@@ -232,6 +232,7 @@ export default {
 <style scoped>
 .btn {
     color: white;
+    margin: 10px;
 }
 
 .createPatient{

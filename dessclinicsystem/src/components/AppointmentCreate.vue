@@ -321,6 +321,7 @@
 <style scoped>
 .btn {
     color: white;
+    margin: 10px;
 }
 .createPatient{
     background-color: lightgray;
