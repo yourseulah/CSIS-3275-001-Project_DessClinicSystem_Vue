@@ -19,7 +19,7 @@
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
                     <!-- <td> <router-link :to="`/patient/`+appointment.patientId">{{ computedPatientName(appointment.patientId) }}</router-link></td> -->
-                    <td> <router-link :to="`/patient/`+appointment.patientId">{{ appointment.patientName }}</router-link></td>
+                    <td> <router-link :to="`/patient/`+appointment.patient.id">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</router-link></td>
                     <td> {{ appointment.quickNote }}</td>
                     <td v-if="appointment.paymentStatus===0">Unpaid</td>
                     <td v-else>Paid</td>
@@ -63,7 +63,13 @@
             deleteAppointment(id){
                                 
                 let result;
-                result = AppointmentService.deleteAppointment(id);
+                AppointmentService.deleteAppointment(id)
+                .then((response) =>{
+                    result = response.data;
+                }).catch(error => {
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
                                 
                 console.warn(result);
                 alert("Submitted");
