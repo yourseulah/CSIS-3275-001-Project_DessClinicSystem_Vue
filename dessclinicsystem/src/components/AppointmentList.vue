@@ -75,8 +75,8 @@
                 })
                                 
                 console.warn(result);
-                alert("Submitted");
-                
+                alert("Appointment Deleted!");
+
                 this.getAppointments()
             },
 
@@ -102,9 +102,9 @@
         },
 
         watch: {
-            appointments() {
-                this.getAppointments()
-            }
+            // appointments() {
+            //     this.getAppointments()
+            // }
         }
     }
 </script>

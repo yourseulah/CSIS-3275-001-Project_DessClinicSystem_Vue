@@ -1,8 +1,11 @@
-<template><div class="navbar">
-    <router-link to="/doctorlist">Doctor List</router-link> | 
-    <router-link to="/appointmentinfo">Appointment</router-link> | <router-link to="/invoicelist">Invoice List</router-link> |
-    <router-link to="/patientInfo">Patient Info</router-link></div>
-  </template>
+<template>
+<div class="navbar">
+    | <router-link to="/doctorlist">Doctor List</router-link> | 
+    <router-link to="/appointmentinfo">Appointment</router-link> | 
+    <router-link to="/invoicelist">Invoice List</router-link> |
+    <router-link to="/patientInfo">Patient Info</router-link> |
+  </div>
+</template>
   
 <script>
   export default {
@@ -16,9 +19,8 @@
   top: 0; /* Position the navbar at the top of the page */
   height: 50px;
   width: 100%; /* Full width */
-
+  text-align: center;
   margin: 10px;
-
   display: block;
 	position: relative;
 	float: none;

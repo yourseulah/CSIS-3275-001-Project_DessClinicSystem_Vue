@@ -1,6 +1,7 @@
 <template>
     <div class = "container createPatient">
         <h1>Create Patient Profile</h1>
+        <br/>
         <div class="row">
             <div class="col">
                 <label class="form-label">Birth Date:</label>
@@ -232,7 +233,9 @@ export default {
 <style scoped>
 .btn {
     color: white;
-    margin: 10px;
+    margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .createPatient{
@@ -240,7 +243,7 @@ export default {
 }
 
 .form-label{
-    background-color: white;
+    background-color: lightgray;
 }
 
 .form-control{

@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <h1 class="text-center">Patient List (Sibling to Sibling components)</h1>
+        <h1 class="text-center">Patient List</h1>
         <table class="table table-striped">
             <thead>
                 <th>ID</th>

@@ -1,6 +1,7 @@
 <template>
     <div class = "container createPatient">
         <h1>Create an Appointment</h1>
+        <br/>
         <!-- <h2 v-if="intoNewAppoint">{{intoNewAppoint}}</h2> -->
         <div class="row">
             <div class="col">
@@ -103,7 +104,7 @@
                 </div>
                 <div class="col"></div>
                 <div class="col">
-                    <label class="form-label">Payment date: </label>
+                    <label class="form-label">Invoice creation date: </label>
                 </div>
                 <div class="col">
                 <input class="form-control" type="text" name="paymentDate" v-model="payment.currentDate">
@@ -323,14 +324,16 @@
 <style scoped>
 .btn {
     color: white;
-    margin: 10px;
+    margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .createPatient{
     background-color: lightgray;
 }
 
 .form-label{
-    background-color: white;
+    background-color: lightgray;
 }
 
 .form-control{
