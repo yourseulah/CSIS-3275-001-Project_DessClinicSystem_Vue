@@ -1,21 +1,32 @@
 <template>
     <div v-if="patient">
-    <!-- <div> -->
-        <h2>
-        id: {{ patient.id }}<br />
-        Patient ID: {{ patient.patientId }}<br />
-        First Name: {{ patient.firstName }}<br />
-        Last Name: {{ patient.lastName }}<br />
-        Gender: {{ patient.gender }}<br />
-        DOB: {{ patient.dob }}<br />
-        Mobile: {{ patient.mobile }}<br />
-        Email: {{ patient.email }}<br />
-        Address: {{ patient.address }}<br />
-        Zipcode: {{ patient.zipCode }}<br />
-        Surgery: {{ patient.surgery }}<br />
-        Allergies: {{ patient.allergies }}<br />
-        Genetic Disease: {{ patient.geneticDisease }}<br />
-        </h2>
+        <br>
+        <div class="itemList">id: {{ patient.id }}</div>
+        <br />
+        <div class="itemList">Patient ID: {{ patient.patientId }}</div>
+        <br />
+        <div class="itemList">First Name: {{ patient.firstName }}</div>
+        <br />
+        <div class="itemList">Last Name: {{ patient.lastName }}</div>
+        <br />
+        <div class="itemList">Gender: {{ patient.gender }}</div>
+        <br />
+        <div class="itemList"> DOB: {{ patient.dob }}</div>
+        <br />
+        <div class="itemList"> Mobile: {{ patient.mobile }}</div>
+        <br />
+        <div class="itemList">Email: {{ patient.email }}</div>
+        <br />
+        <div class="itemList">Address: {{ patient.address }}</div>
+        <br />
+        <div class="itemList">Zipcode: {{ patient.zipCode }}</div>
+        <br />
+        <div class="itemList">Surgery: {{ patient.surgery }}</div>
+        <br />
+        <div class="itemList">Allergies: {{ patient.allergies }}</div>
+        <br />
+        <div class="itemList">Genetic Disease: {{ patient.geneticDisease }}</div>
+        <br />
     </div>
 </template>
 
@@ -54,3 +65,13 @@ export default{
 }
 
 </script>
+
+<style>
+
+    .itemList{
+        size: 30px;
+        margin-left: 100px;
+        font-size: 20px;
+    }
+
+</style>
