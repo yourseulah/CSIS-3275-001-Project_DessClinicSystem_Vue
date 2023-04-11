@@ -1,6 +1,5 @@
 <template>
     <div class = "container createPatient">
-        <!-- Appointment details -->
         <h1>Create an Appointment</h1>
         <!-- <h2 v-if="intoNewAppoint">{{intoNewAppoint}}</h2> -->
         <div class="row">
@@ -8,7 +7,6 @@
                 <label class="form-label">Visit Date:</label>
             </div>
             <div class="col">
-                <!-- <input class="form-control" type="text" name="visitDate" v-model="appointment.visitDate"> -->
                 <select class="form-control" v-model="appointment.visitDate">
                     <option v-for="option in dates" :key="option.value" :value="option.value">{{ option.label }}</option>
                 </select>
@@ -26,7 +24,6 @@
                 <label class="form-label">Visit Time: </label>
             </div>
             <div class="col">
-                <!-- <input class="form-control" type="text" name="visitTime" v-model="appointment.visitTime"> -->
                 <select class="form-control" v-model="appointment.visitTime">
                     <option v-for="option in timeSlots" :key="option.value" :value="option.value">{{ option.label }}</option>
                 </select>
@@ -197,10 +194,11 @@
                 event.preventDefault();
                 const newAppointment = {
                     // "patient" : this.appointment.patient,
-                    "patientId" : this.patient.id,
+                    "patient" : this.patient,
+                    // "patientId" : this.patient.id,
                     "visitDate" : this.appointment.visitDate,
                     "visitTime" : this.appointment.visitTime,
-                    "patientName" : this.patient.firstName+' '+this.patient.lastName,
+                    // "patientName" : this.patient.firstName+' '+this.patient.lastName,
                     // "mobileNumber" : this.appointment.patient.mobile,
                     // "email" : this.appointment.patient.email,
                     "quickNote" : this.appointment.quickNote,
