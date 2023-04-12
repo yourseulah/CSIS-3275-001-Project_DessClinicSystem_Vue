@@ -31,42 +31,26 @@ export default {
         name: 'AllPatients',
         data(){
             return {
-                patient: {
-                    patientId: "",
-                    firstName: "",
-		            lastName: "",
-		            gender: "Male",
-		            dob: "",
-		            mobile: "",
-		            email: "",
-		            address: "",
-		            zipCode: "",
-		            surgery: "",
-		            allergies: "",
-		            geneticDisease: "",
-                    id: "",
-                }
+            patient: {
+                patientId: "",
+                firstName: "",
+                lastName: "",
+                gender: "Male",
+                dob: "",
+                mobile: "",
+                email: "",
+                address: "",
+                zipCode: "",
+                surgery: "",
+                allergies: "",
+                geneticDisease: "",
+                id: "",
+            }
             };
         },
         methods: {
             handleUpdatePatientClick(event) {
                 event.preventDefault();
-                // const updatedPatient = {
-                //     "id" : this.id,
-                //     "patientId" : this.patientId,
-                //     "firstName" : this.firstName,
-		        //     "lastName" : this.lastName,
-		        //     "gender" : this.gender,
-		        //     "dob" : this.dob,
-		        //     "mobile" : this.mobile,
-		        //     "email" : this.email,
-		        //     "address" : this.address,
-		        //     "zipCode" : this.zipCode,
-		        //     "surgery" : this.surgery,
-		        //     "allergies" : this.allergies,
-		        //     "geneticDisease" : this.geneticDisease
-                // }
-
                 PatientDataService.updatePatient(this.patient.id, this.patient)
                     .then(response => {
                         const updatedPat = response.data;
@@ -87,7 +71,6 @@ export default {
             const result = await PatientDataService.retreivePatient(this.$route.params.id);
             console.warn(result.data);
             this.patient = result.data;
-           
         }
     }
 </script>

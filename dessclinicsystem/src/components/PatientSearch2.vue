@@ -1,22 +1,13 @@
 <template>
     <div class = "container">
-        <!-- <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr"><button @click="handleSearchPatientClick">Go</button> -->
         <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr" @keyup.enter="handleSearchPatientClick">
         <table v-if="result" class="table table-striped">
             <thead>
                 <th>Name</th>
-                <!-- <th>action</th> -->
             </thead>
             <tbody>
                 <tr v-for = "patient in patients" v-bind:key = "patient.id">
                     <td v-on:click="putPatToNewAppoint(patient)"> {{ patient.firstName }} {{ patient.lastName }}</td>
-                    <!-- <td> -->
-                        <!-- <router-link :to="'/patient/'+patient.id">Update</router-link> -->
-                        <!-- <router-link :to="'/patient/'+patient.id"><button @click="navigate" role="link">Update</button></router-link> -->
-                        <!-- <button v-on:click="getChild(patient)">Update</button>
-                        <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button> -->
-                    <!-- </td> -->
-                    <!-- <td><button v-on:click="putPatToNewAppoint(patient)">Set New Appointment</button></td> -->
                 </tr>
             </tbody>
         </table>

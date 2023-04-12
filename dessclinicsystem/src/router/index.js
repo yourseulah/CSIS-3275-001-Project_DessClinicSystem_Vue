@@ -10,7 +10,6 @@ import PatientInfo from "../components/PatientInfo.vue";
 import PatientAdd from "../components/PatientAdd.vue";
 import PatientUpdate from "../components/PatientUpdate.vue";
 import PatientUpdate2 from "../components/PatientUpdate2.vue";
-import PatientDelete from "../components/PatientDelete.vue";
 import PatientSearch from "../components/PatientSearch.vue";
 import PatientSearch2 from "../components/PatientSearch2.vue";
 import PatientDetails from "@/components/PatientDetails";
@@ -56,11 +55,6 @@ const routes = [
         name: "PatientAdd",
         path: "/patientadd",
         component: PatientAdd
-    },
-    {
-        name: "PatientDelete",
-        path: "/patientdelete",
-        component: PatientDelete
     },
     {
         name: "PatientInfo",

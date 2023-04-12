@@ -24,8 +24,6 @@
 
 
 <script>
-/* eslint-disable no-mixed-spaces-and-tabs */
-
 import PatientDataService from '@/services/PatientDataService';
 
 export default {
@@ -39,42 +37,27 @@ export default {
 
         data(){
             return {
-                patient: {
-                    patientId: "",
-                    firstName: "",
-		            lastName: "",
-		            gender: "Male",
-		            dob: "",
-		            mobile: "",
-		            email: "",
-		            address: "",
-		            zipCode: "",
-		            surgery: "",
-		            allergies: "",
-		            geneticDisease: "",
-                    id: "",
-                }
+            patient: {
+                patientId: "",
+                firstName: "",
+                lastName: "",
+                gender: "Male",
+                dob: "",
+                mobile: "",
+                email: "",
+                address: "",
+                zipCode: "",
+                surgery: "",
+                allergies: "",
+                geneticDisease: "",
+                id: "",
+            }
             };
         },
         methods: {
 
             handleUpdatePatientClick(event) {
                 event.preventDefault();
-                // const updatedPatient = {
-                //     "id" : this.id,
-                //     "patientId" : this.patientId,
-                //     "firstName" : this.firstName,
-		        //     "lastName" : this.lastName,
-		        //     "gender" : this.gender,
-		        //     "dob" : this.dob,
-		        //     "mobile" : this.mobile,
-		        //     "email" : this.email,
-		        //     "address" : this.address,
-		        //     "zipCode" : this.zipCode,
-		        //     "surgery" : this.surgery,
-		        //     "allergies" : this.allergies,
-		        //     "geneticDisease" : this.geneticDisease
-                // }
 
                 PatientDataService.updatePatient(this.patient.id, this.patient)
                     .then(response => {
@@ -91,18 +74,6 @@ export default {
             clearForm(event){
                 event.preventDefault();
                 this.patient = ""
-                // this.patient.patientId = "",
-                // this.patient.firstName = "",
-                // this.lastName = "",
-		        // this.gender = "Male",
-		        // this.dob = "",
-		        // this.mobile = "",
-		        // this.email = "",
-		        // this.address = "",
-		        // this.zipCode = "",
-		        // this.surgery = "",
-		        // this.allergies = "",
-		        // this.geneticDisease = ""
             }
         },
         async mounted() {

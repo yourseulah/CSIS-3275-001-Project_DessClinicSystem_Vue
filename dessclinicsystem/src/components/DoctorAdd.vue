@@ -71,8 +71,6 @@
 
 
 <script>
-/* eslint-disable no-mixed-spaces-and-tabs */
-
 import DoctorDataService from '@/services/DoctorDataService';
 
 export default {
@@ -80,7 +78,7 @@ export default {
 
     props: {
         updateDoctor: {
-            // id: ""
+            type: Object
         },
 
     },
@@ -103,28 +101,28 @@ export default {
     },
     methods: {
 
-        handleSubmit(){
+        handleSubmit() {
             if (this.validateForm()) {
-      const newDoctor = this.doctor;
+                const newDoctor = this.doctor;
 
-      console.log(newDoctor);
+                console.log(newDoctor);
 
-      DoctorDataService.addDoctor(newDoctor)
-        .then(response => {
-          const newDoc = response.data;
-          console.log("New Doctor:");
-          console.log(newDoc);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+                DoctorDataService.addDoctor(newDoctor)
+                    .then(response => {
+                        const newDoc = response.data;
+                        console.log("New Doctor:");
+                        console.log(newDoc);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
 
-      alert("Doctor added successfully!!");
+                alert("Doctor added successfully!!");
 
-      this.emitRefresh();
-    } else {
-      alert("Please fill in all required fields and ensure that the date of birth is not in the future and the years of practice is a number.");
-    }
+                this.emitRefresh();
+            } else {
+                alert("Please fill in all required fields and ensure that the date of birth is not in the future and the years of practice is a number.");
+            }
 
         },
         validateForm() {
@@ -148,6 +146,7 @@ export default {
         emitRefresh() {
             this.$emit('refreshed', 'yes');
         },
+
         clearForm(event) {
             event.preventDefault();
             this.doctor = "";
@@ -156,6 +155,7 @@ export default {
             this.Action = "Create";
             console.log("clear form");
         },
+        
         handleUpdateDoctorClick(event) {
             console.log(this.doctor);
 

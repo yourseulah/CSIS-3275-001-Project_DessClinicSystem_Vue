@@ -35,7 +35,6 @@
                     <td> {{ patient.geneticDisease }}</td>
                     <td>
                         <button v-on:click="getChild(patient)">Update</button>
-                        <!-- <router-link :to="'/patient/'+patient.id"><button @click="navigate, getChild(childName)" role="link">Update</button></router-link> -->
                         <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
                     </td>
                 </tr>
