@@ -1,13 +1,13 @@
 <template>
     <div class = "container createPatient">
-        <h1>Create Doctor Profile</h1>
+        <h1>{{ Action }} Doctor Profile</h1>
         <br/>
         <div class="row">
             <div class="col">
                 <label class="form-label">Birth Date:</label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="dDoB" v-model="doctor.dDoB">
+                <input class="form-control" type="date" name="dDoB" v-model="doctor.dDoB">
             </div>
             <div class="col"></div>
             <div class="col">
@@ -54,8 +54,8 @@
             <div class="col"></div><div class="col"></div><div class="col"></div>
         </div>
 
-        <button class="btn btn-info btn-lg" @click="handleAddDoctorClick">Save</button>
-        <button class="btn btn-info btn-lg" @click="handleUpdateDoctorClick">Update</button>
+        <button v-if="showCreate" class="btn btn-info btn-lg" @click="handleAddDoctorClick">Save</button>
+        <button v-if="showUpdate" class="btn btn-info btn-lg" @click="handleUpdateDoctorClick">Update</button>
         <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
 </template>
@@ -73,7 +73,7 @@ export default {
             updateDoctor: {
                 // id: ""
             },
-
+            
         },
 
         data(){
@@ -87,6 +87,9 @@ export default {
 		            major: "",
 		            dYoP: "",
                 },
+                showCreate: true,
+                showUpdate: false,
+                Action: "Create"
             };
         },
         methods: {
@@ -115,7 +118,11 @@ export default {
             },
             clearForm(event){
                 event.preventDefault();
-                this.doctor = ""
+                this.doctor = "";
+                this.showCreate = true;
+                this.showUpdate = false;
+                this.Action = "Create";
+                console.log("clear form");
             },
             handleUpdateDoctorClick(event){
                 console.log(this.doctor);
@@ -138,7 +145,11 @@ export default {
         watch: {
             updateDoctor(){
                 // alert("something new");
+                console.log("update doctor");
                 this.doctor = this.updateDoctor;
+                this.showUpdate = true;
+                this.showCreate = false;
+                this.Action = "Update";
             }
         }
     }

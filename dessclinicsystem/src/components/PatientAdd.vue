@@ -1,13 +1,13 @@
 <template>
     <div class = "container createPatient">
-        <h1>Create Patient Profile</h1>
+        <h1>{{ Action }} Patient Profile</h1>
         <br/>
         <div class="row">
             <div class="col">
                 <label class="form-label">Birth Date:</label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="dob" v-model="patient.dob">
+                <input class="form-control" type="date" name="dob" v-model="patient.dob">
             </div>
             <div class="col"></div>
             <div class="col">
@@ -100,8 +100,8 @@
                 <input class="form-control" type="text" name="patientID" v-model="patient.patientId">
             </div>
         </div>
-        <button class="btn btn-info btn-lg" @click="handleAddPatientClick">Save</button>
-        <button class="btn btn-info btn-lg" @click="handleUpdatePatientClick">Update</button>
+        <button v-if="showCreate" class="btn btn-info btn-lg" @click="handleAddPatientClick">Save</button>
+        <button v-if="showUpdate" class="btn btn-info btn-lg" @click="handleUpdatePatientClick">Update</button>
         <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
     </div>
 </template>
@@ -138,41 +138,15 @@ export default {
 		            geneticDisease: "",
                     id: "",
                 },
-            // };
-            // return {
-                // patientId: "",
-                // firstName: "",
-		        // lastName: "",
-		        // gender: "Male",
-		        // dob: "",
-		        // mobile: "",
-		        // email: "",
-		        // address: "",
-		        // zipCode: "",
-		        // surgery: "",
-		        // allergies: "",
-		        // geneticDisease: "",
+                Action: "Create",
+                showUpdate: false,
+                showCreate: true,
             };
         },
         methods: {
             handleAddPatientClick(event) {
                 event.preventDefault();
                 const newPatient = this.patient;
-                // = {
-
-                    // "patientId" : this.patientId,
-                    // "firstName" : this.firstName,
-		            // "lastName" : this.lastName,
-		            // "gender" : this.gender,
-		            // "dob" : this.dob,
-		            // "mobile" : this.mobile,
-		            // "email" : this.email,
-		            // "address" : this.address,
-		            // "zipCode" : this.zipCode,
-		            // "surgery" : this.surgery,
-		            // "allergies" : this.allergies,
-		            // "geneticDisease" : this.geneticDisease
-                // }
 
                 console.log(newPatient);
 
@@ -192,18 +166,9 @@ export default {
             clearForm(event){
                 event.preventDefault();
                 this.patient = ""
-                // this.patientId = "",
-                // this.firstName = "",
-                // this.lastName = "",
-		        // this.gender = "Male",
-		        // this.dob = "",
-		        // this.mobile = "",
-		        // this.email = "",
-		        // this.address = "",
-		        // this.zipCode = "",
-		        // this.surgery = "",
-		        // this.allergies = "",
-		        // this.geneticDisease = ""
+                this.showUpdate = false;
+                this.showCreate = true;
+                this.Action = "Create";
             },
             handleUpdatePatientClick(event){
                 event.preventDefault();
@@ -225,6 +190,9 @@ export default {
             updatePatient(){
                 // alert("something new");
                 this.patient = this.updatePatient;
+                this.showUpdate = true;
+                this.showCreate = false;
+                this.Action = "Update";
             }
         }
     }
