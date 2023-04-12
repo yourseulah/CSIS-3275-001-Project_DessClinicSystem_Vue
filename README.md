@@ -5,7 +5,7 @@
 ```
 vue create dessclinicsystem
 ```
-2. Installed vue-routerand axios 
+2. Install vue-router, axios, bootstrap 
 - vue-router : map the path to different vue components 
 - axios : a module for making HTTP requests to different endpoints.
 - bootstrap : a free and open-source CSS framework 
