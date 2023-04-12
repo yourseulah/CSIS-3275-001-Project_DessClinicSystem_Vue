@@ -43,12 +43,14 @@
                 <input v-if="patient" class="form-control" type="text" name="firstName" :value="fullName">
             </div>
             <div class="col"></div>
-            <div class="col">
+            <div class="col"></div>
+            <div class="col"></div>
+            <!-- <div class="col">
                 <label class="form-label">Doctor's Transcript: </label>
             </div>
             <div class="col">
                 <textarea row=2 class="form-control" name="doctorTranscript" v-model="appointment.doctorTranscript"></textarea>
-            </div>
+            </div> -->
         </div>
         <div class="row">
             <div class="col">
