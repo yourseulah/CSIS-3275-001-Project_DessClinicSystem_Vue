@@ -138,7 +138,7 @@
                     <label class="form-label">Amount: </label>
                 </div>
                 <div class="col">
-                    <input class="form-control" type="text" name="amount" v-model="appointment.amount">
+                    <input class="form-control" type="text" name="amount" v-model="payment.amount">
                 </div><div class="col"></div><div class="col"></div><div class="col"></div>
             </div>
         <button class="btn btn-info btn-lg" @click="handleAddAppointmentClick">Book</button> <button class="btn btn-info btn-lg" @click="clearForm">Cancel</button>
@@ -174,6 +174,7 @@
                     paymentMethod: '',
                     paymentStatus: 'Pending',
                     insuranceCompany: '',
+                    payment: ""
                 },
                 timeSlots: [],
                 dates: [],
@@ -218,7 +219,7 @@
                 const newInvoice = {
                     "paymentDate": this.payment.currentDate,
                     "method": this.payment.paymentMethod,
-                    "amount": this.appointment.amount,
+                    "amount": this.payment.amount,
                     "status": this.payment.paymentStatus,
                     "insuranceCompany": this.payment.insuranceCompany
                 }
@@ -254,19 +255,20 @@
             },
 
             clearForm(event){
+
                 event.preventDefault();
-                this.appointment.visitDate = "",
+                // this.appointment.visitDate = "",
                 this.appointment.visitTime = "",
                 this.appointment.quickNote = "",
                 this.appointment.doctorTranscript = "",
-                this.appointment.paymentStatus = "",
-                this.appointment.amount = "",
                 this.appointment.patient = "",
+                this.appointment.doctorId = ""
                 
                 //Payment options
-                this.appointment.payment.paymentMethod = "",
-                this.appointment.payment.paymentStatus = "",
-                this.appointment.payment.insuranceCompany = ""
+                this.payment.paymentMethod = "",
+                this.payment.paymentStatus = "Pending",
+                this.payment.insuranceCompany = "",
+                this.payment.amount = ""
             },
 
             getDoctors() {
