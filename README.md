@@ -23,5 +23,15 @@ npm run serve
 6. Edit vue_demo\src\main.js (importing router)
 7. Open vue_demo\public\index.html In Vue.js, there is only one HTML. It is called Single Page Application(SPA)
 9. Edit vue_demo\src\App.vue (the master component)
-10. Create a directory vue_demo\src\services
-11. Edit vue_demo\src\services\??? (Use axios to call RESTful services)
+10. Create http-common.js to import axios and declare baseURL of springboot
+```
+import axios from "axios"
+export default axios.create({
+    baseURL: "http://localhost:8080/api",
+    headers: {
+        "Content-type": "application/json"
+    }
+})
+```
+11. Create a directory vue_demo\src\services
+12. Create relevant vue_demo\src\services\{}.js and improt http-common.js and methods to call RESTful services
