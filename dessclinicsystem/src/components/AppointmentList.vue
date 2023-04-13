@@ -8,7 +8,7 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Name</th>
-                <!-- <th>Doctor</th> -->
+                <th>Doctor</th>
                 <th>Note</th>
                 <th>Invoice ID</th>
                 <th>Status</th>
@@ -20,11 +20,16 @@
                     <td><a class="anchor1" @click="deleteAppointment(appointment.appointmentId)">Delete</a></td>
                     <td> {{ appointment.visitDate }}</td>
                     <td> {{ appointment.visitTime }}</td>
-                    <!-- <td> <router-link :to="`/patient/`+appointment.patientId">{{ computedPatientName(appointment.patientId) }}</router-link></td> -->
-                    <td> <router-link :to="`/patient/`+appointment.patient.id">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</router-link></td>
-                    <!-- <td v-if="doctors"> Dr. {{ getDoctorName(appointment.doctorId) }}</td> -->
+                    <td> <router-link :to="`/patient/`+appointment.patient.id">
+                        {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}
+                        </router-link>
+                    </td>
+                    <td>Dr. {{ appointment.doctor.dLName }}</td>
                     <td> {{ appointment.quickNote }}</td>
-                    <td> <router-link :to="`/invoice/`+appointment.invoice.id"> {{ appointment.invoice.id }} </router-link></td>
+                    <td> <router-link :to="`/invoice/`+appointment.invoice.id">
+                         {{ appointment.invoice.id }} 
+                        </router-link>
+                    </td>
                     <td> {{ appointment.invoice.status }}</td>
                     <td> {{ appointment.invoice.amount }}</td>
                 </tr>
@@ -33,7 +38,6 @@
         <h1 v-else>There is no coming appointments!</h1>
     </div>
 </template>
-
 
 <script>
     import AppointmentService from '../services/AppointmentService'
@@ -54,15 +58,22 @@
                 doctors: [],
             }
         },
+        props: {
+            needRefresh: Object
+        },
         methods: {
             getAppointments(){
                 AppointmentService.getAppointments().then((response) =>{
                     this.appointments = response.data;
+
+                    console.log(this.appointments);
+
                 }).catch(error => {
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
             },
+
             deleteAppointment(id){
                                 
                 let result;
@@ -89,22 +100,16 @@
                     console.log(error.response.data);
                 })
             },
-
-            getDoctorName(id) {
-                // if (typeof patient === 'undefined') return "";
-                let doctor = this.doctors.find(doctor => doctor.dId === id);
-                return doctor.dLName;
-            }  
         },
+
         created(){
             this.getAppointments();
-            this.getDoctors();
         },
 
         watch: {
-            // appointments() {
-            //     this.getAppointments()
-            // }
+            needRefresh() {
+                this.getAppointments();
+            }
         }
     }
 </script>

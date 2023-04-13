@@ -1,14 +1,13 @@
 <template>
     <div class="container">
-        <!-- <h3 v-if="newAppoint">(Child to Parent) Patient ID : {{ newAppoint.id }}</h3> -->
         <div class="row">
             <PatientSearch2 class="col-2" :putPatToNewAppoint="getPatName"></PatientSearch2>
             <div class="col-10">
                 <div class="row">
-                <AppointmentList ></AppointmentList>
+                <AppointmentList :needRefresh="newApt"></AppointmentList>
             </div>
             <div class="row">
-                <AppointmentCreate :intoNewAppoint="newAppoint"></AppointmentCreate>
+                <AppointmentCreate :intoNewAppoint="newAppoint" @appt-created-event="newAppCreated"></AppointmentCreate>
             </div>
             </div>
         </div>
@@ -30,14 +29,16 @@ export default{
     data(){
         return{
             newAppoint: {
-                // patient: null
             },
+            newApt: null
             }
     },
     methods: {
         getPatName(AppointPatient){
-            // this.newAppoint.patient = AppointPatient;
             this.newAppoint = AppointPatient;
+        },
+        newAppCreated(obj){
+            this.newApt = obj;
         }
     }
 }

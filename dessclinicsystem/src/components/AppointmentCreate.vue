@@ -2,7 +2,6 @@
     <div class = "container createPatient">
         <h1>Create an Appointment</h1>
         <br/>
-        <!-- <h2 v-if="intoNewAppoint">{{intoNewAppoint}}</h2> -->
         <div class="row">
             <div class="col">
                 <label class="form-label">Visit Date:</label>
@@ -39,8 +38,7 @@
                 <label class="form-label">Patient Name: </label>
             </div>
             <div class="col">
-                <!-- <input class="form-control" type="text" name="firstName" v-model="appointment.patient.firstName" v-model="appointment.patient.lastName"> -->
-                <input v-if="patient" class="form-control" type="text" name="firstName" :value="fullName">
+                <input v-if="patient" class="form-control" disabled type="text" name="firstName" :value="fullName">
             </div>
             <div class="col"></div>
             <div class="col"></div>
@@ -57,15 +55,17 @@
                 <label class="form-label">Patient ID: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="pId" v-model="patient.patientId">
+                <input class="form-control" disabled type="text" name="pId" v-model="patient.patientId">
             </div>
             <div class="col"></div>
             <div class="col">
                 <label class="form-label">Doctor: </label>
             </div>
             <div class="col">
-                <select v-if="doctors" class="form-control" v-model="appointment.doctorId">
-                    <option v-for="doctor in doctors" :key="doctor.dId" :value="doctor.dId">Dr. {{ doctor.dFName }} {{ doctor.dLName }}</option>
+                <select v-if="doctors" class="form-control" v-model="doctor.dId" >
+                    <option v-for="doctor in doctors" :key="doctor.dId" :value="doctor.dId">
+                        Dr. {{ doctor.dFName }} {{ doctor.dLName }}
+                    </option>
                 </select>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 <label class="form-label">Mobile: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="mobile" v-model="patient.mobile">
+                <input class="form-control" disabled type="text" name="mobile" v-model="patient.mobile">
             </div>
             <div class="col"></div><div class="col"></div><div class="col"></div>
         </div>
@@ -83,7 +83,7 @@
                 <label class="form-label">Email: </label>
             </div>
             <div class="col">
-                <input class="form-control" type="text" name="email" v-model="patient.email">
+                <input class="form-control" disabled type="text" name="email" v-model="patient.email">
             </div>
             <div class="col"></div><div class="col"></div><div class="col"></div>
         </div>
@@ -98,9 +98,9 @@
                     <label class="form-label">Payment status: </label>
                 </div>
                 <div class="col">
-                    <select class="form-control" SELECTED value="Pending" v-model="payment.paymentStatus">
+                    <select class="form-control" v-model="payment.paymentStatus">
                         <option value="Paid">PAID</option>
-                        <option value="Pending">PENDING</option>
+                        <option value="Pending" select="selected">PENDING</option>
                         <option value="Unknown">UNKNOWN</option>
                     </select>
                 </div>
@@ -147,7 +147,6 @@
     </div>
 </template>
 
-
 <script>
     import AppointmentService from '../services/AppointmentService'
     import InvoiceService from '../services/InvoiceService'
@@ -159,7 +158,6 @@
         props: {
             intoNewAppoint: {
             },
-
         },
         data(){
             return {
@@ -180,19 +178,16 @@
                 },
                 timeSlots: [],
                 dates: [],
-
                 doctors: [],
                 doctor: {
-
+                    dId: ""
                 },
-
                 paymentID: 0
             }    
         },
 
         computed: {
             fullName() {
-                // if (typeof patient === 'undefined') return "";
                 return this.patient.firstName + ' ' + this.patient.lastName;
             }  
         },
@@ -215,7 +210,7 @@
                     "visitDate" : this.appointment.visitDate,
                     "visitTime" : this.appointment.visitTime,
                     "quickNote" : this.appointment.quickNote,
-                    "doctorId" : this.appointment.doctorId,
+                    "doctor" : this.doctor,
                 }    
 
                 const newInvoice = {
@@ -228,38 +223,38 @@
 
                 InvoiceService.createInvoice(newInvoice)
                     .then(response =>{
-                        const newApp = response.data;
+                        const newInv = response.data;
                         this.paymentID = response.data.id;
-                        console.log(newApp);
+                        console.log("invoice from springboot:");
+                        console.log(newInv);
 
+                        console.log("passing to springboot");
+                        console.log(newAppointment);
 
                             AppointmentService.createAppointment(this.paymentID, newAppointment)
                             .then(response => {
+ 
                                 const newApp = response.data;
-                                console.log("New Appointment:");
+                                console.log("coming from to springboot");
                                 console.log(newApp);
+
+                                alert("New appointment created");
+                                alert("New invoice created");
+
+                                this.$emit('appt-created-event', newApp);
                             })
                             .catch(error => {
                                 console.log(error);
                             })
-
-                            alert("New appointment created");
-                            alert("New invoice created");
-                            this.$router.push({name:'AppointmentInfo'});
-
                     })
                     .catch(error => {
                         console.log(error);
-                    })
-                    
-                this.$forceUpdate();
-                // this.$router.push({name:'AppointmentInfo'});
+                    }) 
             },
 
             clearForm(event){
 
                 event.preventDefault();
-                // this.appointment.visitDate = "",
                 this.appointment.visitTime = "",
                 this.appointment.quickNote = "",
                 this.appointment.doctorTranscript = "",
@@ -288,12 +283,10 @@
         },
         watch: {
             intoNewAppoint(){
-                // this.appointment.patient = this.intoNewAppoint;
                 this.patient = this.intoNewAppoint;
             }
         },
         mounted() {
-
             const startDate = new Date();
             startDate.setHours(9); // Start at 9:00 AM
             startDate.setMinutes(0);
