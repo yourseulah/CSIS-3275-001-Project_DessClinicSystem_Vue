@@ -1,12 +1,9 @@
 <template>
-    <div>
+    <div class="patientInfoDiv">
         <PatientAdd :updatePatient="childName"></PatientAdd>
         <br /><br />
         <PatientSearch :getChild="getChildName"></PatientSearch>
         <br /><br />
-        
-        
-        
     </div>
 </template>
 
@@ -36,3 +33,10 @@ export default {
 }
 
 </script>
+
+<style>
+.patientInfoDiv
+{
+    margin: 3%;
+}
+</style>

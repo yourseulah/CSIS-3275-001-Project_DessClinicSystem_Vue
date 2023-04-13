@@ -34,7 +34,7 @@
                     <label class="form-label">Email: </label>
                 </div>
                 <div class="col">
-                    <input class="form-control" type="email" name="email" v-model="patient.email">
+                    <input placeholder="abc@gmail.com" class="form-control" type="email" name="email" v-model="patient.email">
                 </div>
             </div>
             <div class="row">
