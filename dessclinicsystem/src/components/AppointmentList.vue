@@ -18,10 +18,10 @@
                 <tr v-for="appointment in appointments" v-bind:key="appointment.appointmentId">
                     <td> {{ appointment.appointmentId }}</td>
 
-                    <td> {{ appointment.visitDate }}</td>
-                    <td> {{ appointment.visitTime }}</td>
-                    <td> <router-link :to="`/patient/` + appointment.patient.id">
-                            {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}
+                    <td> {{ (appointment.visitDate) }}</td>
+                    <td> {{ formattedTimes(appointment.visitTime) }}</td>
+                    <td> <router-link :to="`/patient/`+appointment.patient.id">
+                        {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}
                         </router-link>
                     </td>
                     <td>Dr. {{ appointment.doctor.dLName }}</td>
@@ -93,16 +93,22 @@ export default {
             this.getAppointments()
         },
 
-        getDoctors() {
-            DoctorDataService.getDoctors().then((response) => {
-                this.doctors = response.data;
-                // console.log(this.doctors);
-            }).catch(error => {
-                this.message = error.response.data.message;
-                console.log(error.response.data);
-            })
+            getDoctors() {
+                DoctorDataService.getDoctors().then((response) =>{
+                    this.doctors = response.data;
+                    // console.log(this.doctors);
+                }).catch(error => {
+                    this.message = error.response.data.message;
+                    console.log(error.response.data);
+                })
+            },
+
+            
+            formattedTimes(localTimeObject) {
+                return localTimeObject.slice(0,5);
+            },
+        
         },
-    },
 
     created() {
         this.getAppointments();
