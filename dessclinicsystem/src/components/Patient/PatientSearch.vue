@@ -122,7 +122,7 @@ table {
     width: 80%;
     margin: auto;
     border: 1px solid #ddd;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 th,
