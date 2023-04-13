@@ -69,7 +69,6 @@ export default{
 
     methods: {
         retreivePatient(id){
-            // const id = 2;
             PatientDataService.retreivePatient(id)
                 .then(response => {
                     this.patient = response.data;
@@ -80,10 +79,6 @@ export default{
                 })
         }
     },
-
-    // mounted() {
-    //     this.retreivePatient();
-    // }
 
     created(){
         const id = this.$route.params.id;

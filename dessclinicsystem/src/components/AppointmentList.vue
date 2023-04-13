@@ -96,7 +96,6 @@ export default {
             getDoctors() {
                 DoctorDataService.getDoctors().then((response) =>{
                     this.doctors = response.data;
-                    // console.log(this.doctors);
                 }).catch(error => {
                     this.message = error.response.data.message;
                     console.log(error.response.data);

@@ -123,7 +123,7 @@ export default {
 
     props: {
         updatePatient: {
-            // id: ""
+            
         }
     },
 
@@ -241,7 +241,6 @@ export default {
     },
     watch: {
         updatePatient() {
-            // alert("something new");
             this.patient = this.updatePatient;
             this.showUpdate = true;
             this.showCreate = false;

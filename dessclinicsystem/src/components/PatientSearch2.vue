@@ -30,7 +30,6 @@
                 queryStr: "",
                 NotFound: "",
                 patients : [],
-                // patient: null
             }
         },
         methods: {
