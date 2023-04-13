@@ -1,10 +1,12 @@
 <template>
     <div>
-        <PatientSearch :getChild="getChildName"></PatientSearch>
-        <br /><br />
         <PatientAdd :updatePatient="childName"></PatientAdd>
         <br /><br />
+        <PatientSearch :getChild="getChildName"></PatientSearch>
+        <br /><br />
         <PatientList :getChild="getChildName"></PatientList>
+        
+        
     </div>
 </template>
 
