@@ -1,5 +1,5 @@
 <template>
-    <div class = "container">
+    <div class="container">
         <h1 class="text-center">Available Doctors</h1>
         <table class="table table-striped">
             <thead>
@@ -13,7 +13,7 @@
                 <th>ACTIONS</th>
             </thead>
             <tbody>
-                <tr v-for = "doctor in doctors" v-bind:key = "doctor.dId">
+                <tr v-for="doctor in doctors" v-bind:key="doctor.dId">
                     <td> {{ doctor.dId }}</td>
                     <td> {{ doctor.dFName }}</td>
                     <td> {{ doctor.dLName }}</td>
@@ -23,7 +23,8 @@
                     <td> {{ doctor.dYoP }}</td>
                     <td>
                         <button class="btn btn-info btn-lg" v-on:click="getChild(doctor)">Update</button>
-                        <button v-on:click="handleDeleteDoctorClick(doctor.dId)" class="btn btn-info btn-lg" id="cancel">Delete</button>
+                        <button v-on:click="handleDeleteDoctorClick(doctor.dId)" class="btn btn-info btn-lg"
+                            id="cancel">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -34,39 +35,39 @@
 
 
 <script>
-    import DoctorDataService from '../../services/DoctorDataService'
-    import DoctorAdd from '@/components/Doctor/DoctorAdd.vue'
+import DoctorDataService from '../../services/DoctorDataService'
+import DoctorAdd from '@/components/Doctor/DoctorAdd.vue'
 
-    export default {
-        name: 'DoctorList',
+export default {
+    name: 'DoctorList',
 
-        components:{
-            DoctorAdd
+    components: {
+        DoctorAdd
+    },
+
+    data() {
+        return {
+            doctors: [],
+            doctor: null
+        }
+    },
+    methods: {
+        getChild(doctor) {
+            this.doctor = doctor;
         },
-
-        data(){
-            return {
-                doctors : [],
-                doctor: null
-            }
+        getDoctors() {
+            DoctorDataService.getDoctors().then((response) => {
+                this.doctors = response.data;
+            }).catch(error => {
+                this.message = error.response.data.message;
+                console.log(error.response.data);
+            })
         },
-        methods: {
-            getChild(doctor){
-                this.doctor=doctor;
-            },
-            getDoctors(){
-                DoctorDataService.getDoctors().then((response) =>{
-                    this.doctors = response.data;
-                }).catch(error => {
-                    this.message = error.response.data.message;
-                    console.log(error.response.data);
-                })
-            },
-            handleDeleteDoctorClick(id){
+        handleDeleteDoctorClick(id) {
 
-                console.log("id:"+ id);
-        
-                DoctorDataService.deleteDoctor(id)
+            console.log("id:" + id);
+
+            DoctorDataService.deleteDoctor(id)
                 .then(response => {
                     console.log(response.data);
                 }).catch(error => {
@@ -74,19 +75,19 @@
                     console.log(error.response.data);
                 })
 
-                alert("Doctor Deleted!");
-                this.refreshPage()
-            },
-            refreshPage(){
-                this.getDoctors();
-            }
+            alert("Doctor Deleted!");
+            this.refreshPage()
         },
+        refreshPage() {
+            this.getDoctors();
+        }
+    },
 
-        created(){
-            this.getDoctors()
-        },
+    created() {
+        this.getDoctors()
+    },
 
-    }
+}
 </script>
 
 <style scoped>
@@ -98,7 +99,8 @@ table {
     font-size: 18px;
 }
 
-th, td {
+th,
+td {
     text-align: center;
     padding: 12px;
 }
@@ -154,12 +156,11 @@ tbody td {
     color: #fff;
     transform: translateY(-2px);
 }
+
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
-
-
 </style>
