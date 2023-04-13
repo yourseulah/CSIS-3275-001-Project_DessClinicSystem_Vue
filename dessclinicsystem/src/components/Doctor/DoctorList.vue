@@ -34,8 +34,8 @@
 
 
 <script>
-    import DoctorDataService from '../services/DoctorDataService'
-    import DoctorAdd from '@/components/DoctorAdd.vue'
+    import DoctorDataService from '../../services/DoctorDataService'
+    import DoctorAdd from '@/components/Doctor/DoctorAdd.vue'
 
     export default {
         name: 'DoctorList',

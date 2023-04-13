@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import PatientSearch2 from './PatientSearch2.vue';
+import PatientSearch2 from '../Patient/PatientSearch2.vue';
 import AppointmentList from './AppointmentList.vue';
 import AppointmentCreate from './AppointmentCreate.vue';
 

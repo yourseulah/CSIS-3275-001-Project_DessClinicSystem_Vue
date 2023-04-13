@@ -1,19 +1,19 @@
 import { createWebHistory, createRouter } from "vue-router";
 import HomePage from "../components/HomePage.vue";
-import PatientList from "../components/PatientList.vue";
-import AppointmentInfo from "@/components/AppointmentInfo"
-import AppointmentList from "../components/AppointmentList.vue";
-import AppointmentCreate from "../components/AppointmentCreate.vue";
-import DoctorList from "../components/DoctorList.vue";
-import InvoiceList from "../components/InvoiceList.vue";
-import PatientInfo from "../components/PatientInfo.vue";
-import PatientAdd from "../components/PatientAdd.vue";
-import PatientUpdate from "../components/PatientUpdate.vue";
-import PatientUpdate2 from "../components/PatientUpdate2.vue";
-import PatientSearch from "../components/PatientSearch.vue";
-import PatientSearch2 from "../components/PatientSearch2.vue";
-import PatientDetails from "@/components/PatientDetails";
-import InvoiceDetails from "../components/InvoiceDetails";
+import PatientList from "../components/Patient/PatientList.vue";
+import AppointmentInfo from "@/components/Appointment/AppointmentInfo"
+import AppointmentList from "../components/Appointment/AppointmentList.vue";
+import AppointmentCreate from "../components/Appointment/AppointmentCreate.vue";
+import DoctorList from "../components/Doctor/DoctorList.vue";
+import InvoiceList from "../components/Invoice/InvoiceList.vue";
+import PatientInfo from "../components/Patient/PatientInfo.vue";
+import PatientAdd from "../components/Patient/PatientAdd.vue";
+import PatientUpdate from "../components/Patient/PatientUpdate.vue";
+import PatientUpdate2 from "../components/Patient/PatientUpdate2.vue";
+import PatientSearch from "../components/Patient/PatientSearch.vue";
+import PatientSearch2 from "../components/Patient/PatientSearch2.vue";
+import PatientDetails from "@/components/Patient/PatientDetails";
+import InvoiceDetails from "../components/Invoice/InvoiceDetails";
 
 const routes = [
     {

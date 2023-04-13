@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import InvoiceService from '../services/InvoiceService';
+import InvoiceService from '../../services/InvoiceService';
 
 export default{
     data() {

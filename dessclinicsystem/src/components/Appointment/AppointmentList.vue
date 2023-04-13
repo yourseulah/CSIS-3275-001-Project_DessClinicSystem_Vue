@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import AppointmentService from '../services/AppointmentService'
+import AppointmentService from '../../services/AppointmentService'
 import DoctorDataService from '@/services/DoctorDataService'
 
 export default {

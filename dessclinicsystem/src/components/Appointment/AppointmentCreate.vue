@@ -161,8 +161,8 @@
 </template>
 
 <script>
-import AppointmentService from '../services/AppointmentService'
-import InvoiceService from '../services/InvoiceService'
+import AppointmentService from '../../services/AppointmentService'
+import InvoiceService from '../../services/InvoiceService'
 import DoctorDataService from '@/services/DoctorDataService'
 
 export default {
