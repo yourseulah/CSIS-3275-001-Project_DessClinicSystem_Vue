@@ -4,7 +4,7 @@
         <br /><br />
         <PatientSearch :getChild="getChildName"></PatientSearch>
         <br /><br />
-        <PatientList :getChild="getChildName"></PatientList>
+        
         
         
     </div>
@@ -13,13 +13,12 @@
 <script>
 import PatientSearch from './PatientSearch.vue';
 import PatientAdd from './PatientAdd.vue';
-import PatientList from './PatientList.vue';
+
 
 export default {
     components: {
         PatientSearch,
-        PatientAdd,
-        PatientList
+        PatientAdd
     },
 
     data() {
