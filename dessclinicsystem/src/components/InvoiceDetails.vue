@@ -1,18 +1,34 @@
 <template>
-    <div v-if="invoice">
-        <br>
-        <div class="itemList">id: {{ invoice.id }}</div>
-        <br>
-        <div class="itemList">Payment date: {{ invoice.paymentDate }}</div>
-        <br>
-        <div class="itemList">Method: {{ invoice.method }}</div>
-        <br>
-        <div class="itemList">Amount: {{ invoice.amount }}</div>
-        <br>
-        <div class="itemList">Status: {{ invoice.status }}</div>
-        <br>
-        <div class="itemList">Insurance Company: {{ invoice.insuranceCompany }}</div>
-    </div>
+<div v-if="invoice">
+  <br>
+  <table class="invoice-table">
+    <tr>
+      <td>Id:</td>
+      <td>{{ invoice.id }}</td>
+    </tr>
+    <tr>
+      <td>Payment date:</td>
+      <td>{{ invoice.paymentDate }}</td>
+    </tr>
+    <tr>
+      <td>Method:</td>
+      <td>{{ invoice.method }}</td>
+    </tr>
+    <tr>
+      <td>Amount:</td>
+      <td>{{ invoice.amount }}</td>
+    </tr>
+    <tr>
+      <td>Status:</td>
+      <td>{{ invoice.status }}</td>
+    </tr>
+    <tr>
+      <td>Insurance Company:</td>
+      <td>{{ invoice.insuranceCompany }}</td>
+    </tr>
+  </table>
+</div>
+
 </template>
 
 <script>
@@ -48,10 +64,20 @@ export default{
 
 <style>
 
-    .itemList{
-        size: 30px;
-        margin-left: 100px;
-        font-size: 20px;
-    }
+.invoice-table {
+  margin: 0 auto; 
+  border-collapse: collapse; 
+  font-size: 16px;
+}
+
+.invoice-table td {
+  padding: 10px; 
+  border: 1px solid #ccc;
+}
+
+.invoice-table td:first-child {
+  font-weight: bold; 
+  background-color: #f5f5f5; 
+}
 
 </style>

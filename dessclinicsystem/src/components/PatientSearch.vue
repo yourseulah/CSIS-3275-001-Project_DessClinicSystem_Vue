@@ -1,7 +1,8 @@
 <template>
     <div class = "container">
-        <h1 class="text-center">Search a Patient Result</h1>
-        Search: <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr"><button @click="handleSearchPatientClick">Go</button>
+        <h2 class="text-center">Search a Patient</h2>
+        Search: <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr">
+        <button class="btn btn-info btn-lg" @click="handleSearchPatientClick">Go</button>
         {{ NotFound }}
         <table v-if="result" class="table table-striped">
             <thead>
@@ -36,8 +37,8 @@
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
                     <td>
-                        <button v-on:click="getChild(patient)">Update</button>
-                        <button v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
+                        <button class="btn btn-info btn-lg" v-on:click="getChild(patient)">Update</button>
+                        <button class="btn btn-info btn-lg" id="cancel" v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -111,3 +112,83 @@
 
     }
 </script>
+
+<style scoped>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 60%;
+  margin-right: 10px;
+}
+
+
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #333333;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  font-size: 16px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+button {
+  font-size: 16px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+.btn {
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: #fff;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-info:hover {
+    background-color: green;
+    border-color: #117a8b;
+    color: #fff;
+    transform: translateY(-2px);
+}
+</style>

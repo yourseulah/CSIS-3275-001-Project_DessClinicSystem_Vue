@@ -7,12 +7,11 @@
   </div>
   <div class="box">
     <router-link class="nav-link" to="/">Home</router-link>
-    <router-link class="nav-link" to="/doctorlist">Doctor List</router-link>
-    <router-link class="nav-link" to="/appointmentinfo">Appointment</router-link>
-    <router-link class="nav-link" to="/invoicelist">Invoice List</router-link>
-    <router-link class="nav-link" to="/patientInfo">Patient Info</router-link>
+    <router-link class="nav-link" to="/patientInfo">Patients</router-link>
+    <router-link class="nav-link" to="/appointmentinfo">Appointments</router-link>
+    <router-link class="nav-link" to="/doctorlist">Doctors</router-link>
+    <router-link class="nav-link" to="/invoicelist">Invoices</router-link>
   </div>
-
   <router-view />
 </div>
 

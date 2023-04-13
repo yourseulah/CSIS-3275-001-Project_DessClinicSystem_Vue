@@ -1,33 +1,60 @@
 <template>
-    <div v-if="patient">
-        <br>
-        <div class="itemList">id: {{ patient.id }}</div>
-        <br />
-        <div class="itemList">Patient ID: {{ patient.patientId }}</div>
-        <br />
-        <div class="itemList">First Name: {{ patient.firstName }}</div>
-        <br />
-        <div class="itemList">Last Name: {{ patient.lastName }}</div>
-        <br />
-        <div class="itemList">Gender: {{ patient.gender }}</div>
-        <br />
-        <div class="itemList"> DOB: {{ patient.dob }}</div>
-        <br />
-        <div class="itemList"> Mobile: {{ patient.mobile }}</div>
-        <br />
-        <div class="itemList">Email: {{ patient.email }}</div>
-        <br />
-        <div class="itemList">Address: {{ patient.address }}</div>
-        <br />
-        <div class="itemList">Zipcode: {{ patient.zipCode }}</div>
-        <br />
-        <div class="itemList">Surgery: {{ patient.surgery }}</div>
-        <br />
-        <div class="itemList">Allergies: {{ patient.allergies }}</div>
-        <br />
-        <div class="itemList">Genetic Disease: {{ patient.geneticDisease }}</div>
-        <br />
-    </div>
+<div v-if="patient">
+  <table class="patient-table">
+    <tr>
+      <td>Id:</td>
+      <td>{{ patient.id }}</td>
+    </tr>
+    <tr>
+      <td>Patient ID:</td>
+      <td>{{ patient.patientId }}</td>
+    </tr>
+    <tr>
+      <td>First Name:</td>
+      <td>{{ patient.firstName }}</td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td>{{ patient.lastName }}</td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td>{{ patient.gender }}</td>
+    </tr>
+    <tr>
+      <td>DOB:</td>
+      <td>{{ patient.dob }}</td>
+    </tr>
+    <tr>
+      <td>Mobile:</td>
+      <td>{{ patient.mobile }}</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td>{{ patient.email }}</td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td>{{ patient.address }}</td>
+    </tr>
+    <tr>
+      <td>Zipcode:</td>
+      <td>{{ patient.zipCode }}</td>
+    </tr>
+    <tr>
+      <td>Surgery:</td>
+      <td>{{ patient.surgery }}</td>
+    </tr>
+    <tr>
+      <td>Allergies:</td>
+      <td>{{ patient.allergies }}</td>
+    </tr>
+    <tr>
+      <td>Genetic Disease:</td>
+      <td>{{ patient.geneticDisease }}</td>
+    </tr>
+  </table>
+</div>
 </template>
 
 <script>
@@ -67,11 +94,20 @@ export default{
 </script>
 
 <style>
+.patient-table {
+  margin: 0 auto; 
+  border-collapse: collapse; 
+  font-size: 16px;
+}
 
-    .itemList{
-        size: 30px;
-        margin-left: 100px;
-        font-size: 20px;
-    }
+.patient-table td {
+  padding: 10px; 
+  border: 1px solid #ccc;
+}
+
+.patient-table td:first-child {
+  font-weight: bold; 
+  background-color: #f5f5f5; 
+}
 
 </style>

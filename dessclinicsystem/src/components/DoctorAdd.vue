@@ -60,7 +60,7 @@
                 <div class="col"></div>
             </div>
             <div class="button-container">
-                <button v-if="showCreate" class="btn btn-info btn-lg" >Save</button>
+                <button v-if="showCreate" class="btn btn-info btn-lg">Save</button>
                 <button v-if="showUpdate" class="btn btn-info btn-lg" @click="handleUpdateDoctorClick">Update</button>
 
                 <button class="btn btn-info btn-lg" id="cancel" @click="clearForm">Cancel</button>
@@ -126,7 +126,7 @@ export default {
 
         },
         validateForm() {
-    
+
             if (!this.doctor.dFName || !this.doctor.dLName || !this.doctor.dDoB || !this.doctor.major || !this.doctor.dYoP) {
                 return false;
             }
@@ -155,7 +155,7 @@ export default {
             this.Action = "Create";
             console.log("clear form");
         },
-        
+
         handleUpdateDoctorClick(event) {
             console.log(this.doctor);
 
@@ -190,11 +190,10 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
-  
+
     margin: 0 auto;
-   
+
 }
 
 h1 {
@@ -216,6 +215,7 @@ h1 {
     padding: 10px;
     width: 100%;
 }
+
 .form-select {
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -259,6 +259,7 @@ h1 {
     color: #fff;
     transform: translateY(-2px);
 }
+
 .button-container {
     display: flex;
     justify-content: center;
@@ -269,16 +270,13 @@ h1 {
 
 
 form {
-  border: 2px solid #ccc; 
-  padding: 20px; 
+    border: 2px solid #ccc;
+    padding: 20px;
 
 }
 
-#cancel:hover{
+#cancel:hover {
     background-color: red;
 
 }
-
-
-
 </style>

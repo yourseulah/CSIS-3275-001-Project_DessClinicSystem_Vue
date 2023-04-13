@@ -1,10 +1,11 @@
 <template>
 <div class="navbar">
   <router-link class="nav-link" to="/">Home</router-link>
-    <router-link to="/doctorlist">Doctor List</router-link>
-    <router-link to="/appointmentinfo">Appointment</router-link>
-    <router-link to="/invoicelist">Invoice List</router-link>
-    <router-link to="/patientInfo">Patient Info</router-link>
+  <router-link to="/patientInfo">Patients</router-link>
+  <router-link to="/appointmentinfo">Appointments</router-link>
+    <router-link to="/doctorlist">Doctors</router-link>
+    <router-link to="/invoicelist">Invoices</router-link>
+
   </div>
 </template>
   

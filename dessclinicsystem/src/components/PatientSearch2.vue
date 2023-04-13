@@ -1,6 +1,6 @@
 <template>
     <div class = "container">
-        <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr" @keyup.enter="handleSearchPatientClick">
+        <input type="text" name="searchStr" placeholder="Select Patient" v-model="queryStr" @keyup.enter="handleSearchPatientClick">
         <table v-if="result" class="table table-striped">
             <thead>
                 <th>Name</th>
@@ -61,3 +61,58 @@
         },
     }
 </script>
+
+<style scoped>
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  background-color: #f2f2f2;
+  padding: 8px;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+td:first-child {
+  font-weight: bold;
+}
+
+td:hover {
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+</style>
