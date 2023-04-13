@@ -1,9 +1,14 @@
 <template>
     <div class="container">
-        <h2 class="text-center">Search a Patient</h2>
+        <div class="divtext">
+            <h2 class="text-center">Search a Patient</h2>
         Search: <input type="text" name="searchStr" placeholder="Patient Search" v-model="queryStr">
         <button class="btn btn-info btn-lg" @click="handleSearchPatientClick">Go</button>
         {{ NotFound }}
+
+        </div>
+    <div class="divtable">
+    
         <table v-if="result" class="table table-striped">
             <thead>
                 <th>ID</th>
@@ -16,9 +21,6 @@
                 <th>Email</th>
                 <th>Address</th>
                 <th>Zip Code</th>
-                <th>Surgery</th>
-                <th>Allergies</th>
-                <th>Genetic Disease</th>
                 <th>ACTIONS</th>
             </thead>
             <tbody>
@@ -33,9 +35,7 @@
                     <td> {{ patient.email }}</td>
                     <td> {{ patient.address }}</td>
                     <td> {{ patient.zipCode }}</td>
-                    <td> {{ patient.surgery }}</td>
-                    <td> {{ patient.allergies }}</td>
-                    <td> {{ patient.geneticDisease }}</td>
+
                     <td>
                         <button class="btn btn-info btn-lg" v-on:click="getChild(patient)">Update</button>
                         <button class="btn btn-info btn-lg" id="cancel"
@@ -44,6 +44,7 @@
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
 </template>
 
@@ -115,63 +116,51 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
-    font-size: 18px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 60%;
-    margin-right: 10px;
-}
-
-
-
 table {
-    margin-top: 20px;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
+    margin: auto;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 12px;
 }
 
 th {
     background-color: #333333;
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
+    color: white;
 }
 
-td {
-    font-size: 16px;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-tbody tr:hover {
-    background-color: #f5f5f5;
+td:first-child {
+    border-left: 1px solid #ddd;
 }
 
-button {
-    font-size: 16px;
-    padding: 5px 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+td:last-child {
+    border-right: 1px solid #ddd;
 }
 
+tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
 
+tbody td {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.container {
+    margin: 30px auto;
+    border: 1px solid #ddd;
+    padding: 30px;
+}
 
 .btn {
     border-radius: 5px;
@@ -192,4 +181,25 @@ button {
     color: #fff;
     transform: translateY(-2px);
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.divtext{
+    text-align: center;
+}
+
+.divtext input[type="text"] {
+  height: 60px;
+  width: 500px; 
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
 </style>
