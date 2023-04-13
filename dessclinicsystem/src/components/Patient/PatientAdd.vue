@@ -15,7 +15,7 @@
                     <label class="form-label">Mobile Phone: </label>
                 </div>
                 <div class="col">
-                    <input class="form-control" type="text" name="mobile" v-model="patient.mobile">
+                    <input placeholder="1234567890" class="form-control" type="text" name="mobile" v-model="patient.mobile">
                 </div>
             </div>
             <div class="row">
