@@ -20,8 +20,8 @@
 
                     <td> {{ (appointment.visitDate) }}</td>
                     <td> {{ formattedTimes(appointment.visitTime) }}</td>
-                    <td> <router-link :to="`/patient/`+appointment.patient.id">
-                        {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}
+                    <td> <router-link :to="`/patient/` + appointment.patient.id">
+                            {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}
                         </router-link>
                     </td>
                     <td>Dr. {{ appointment.doctor.dLName }}</td>
@@ -93,21 +93,21 @@ export default {
             this.getAppointments()
         },
 
-            getDoctors() {
-                DoctorDataService.getDoctors().then((response) =>{
-                    this.doctors = response.data;
-                }).catch(error => {
-                    this.message = error.response.data.message;
-                    console.log(error.response.data);
-                })
-            },
-
-            
-            formattedTimes(localTimeObject) {
-                return localTimeObject.slice(0,5);
-            },
-        
+        getDoctors() {
+            DoctorDataService.getDoctors().then((response) => {
+                this.doctors = response.data;
+            }).catch(error => {
+                this.message = error.response.data.message;
+                console.log(error.response.data);
+            })
         },
+
+
+        formattedTimes(localTimeObject) {
+            return localTimeObject.slice(0, 5);
+        },
+
+    },
 
     created() {
         this.getAppointments();
