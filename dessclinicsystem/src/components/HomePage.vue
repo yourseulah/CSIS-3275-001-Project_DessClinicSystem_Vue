@@ -1,31 +1,28 @@
 <template>
-<div class="container">
-  <Header />
+  <div class="container">
+    <Header />
 
-  <div class="heading">
-    <h1>Welcome to Clinical Management System</h1>
+    <div class="heading">
+      <h1>Welcome to Clinical Management System</h1>
+    </div>
+    <div class="box">
+      <router-link class="nav-link" to="/">Home</router-link>
+      <router-link class="nav-link" to="/patientInfo">Patients</router-link>
+      <router-link class="nav-link" to="/appointmentinfo">Appointments</router-link>
+      <router-link class="nav-link" to="/doctorlist">Doctors</router-link>
+      <router-link class="nav-link" to="/invoicelist">Invoices</router-link>
+    </div>
+    <router-view />
   </div>
-  <div class="box">
-    <router-link class="nav-link" to="/">Home</router-link>
-    <router-link class="nav-link" to="/patientInfo">Patients</router-link>
-    <router-link class="nav-link" to="/appointmentinfo">Appointments</router-link>
-    <router-link class="nav-link" to="/doctorlist">Doctors</router-link>
-    <router-link class="nav-link" to="/invoicelist">Invoices</router-link>
-  </div>
-  <router-view />
-</div>
-
-
 </template>
 
 <script>
 export default {
-    name: "HomePage",
+  name: "HomePage",
 }
 </script>
 
 <style scoped>
-
 .heading {
   width: 100%;
   height: 100px;
@@ -66,13 +63,9 @@ export default {
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  
-
 }
 
 .nav-link:hover {
   background-color: #555;
 }
-
-
 </style>

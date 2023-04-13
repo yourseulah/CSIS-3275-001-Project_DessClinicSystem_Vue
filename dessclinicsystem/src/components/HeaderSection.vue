@@ -1,8 +1,8 @@
 <template>
-<div class="navbar">
-  <router-link class="nav-link" to="/">Home</router-link>
-  <router-link to="/patientInfo">Patients</router-link>
-  <router-link to="/appointmentinfo">Appointments</router-link>
+  <div class="navbar">
+    <router-link class="nav-link" to="/">Home</router-link>
+    <router-link to="/patientInfo">Patients</router-link>
+    <router-link to="/appointmentinfo">Appointments</router-link>
     <router-link to="/doctorlist">Doctors</router-link>
     <router-link to="/invoicelist">Invoices</router-link>
 
@@ -10,20 +10,19 @@
 </template>
   
 <script>
-  export default {
-    name: 'App',
-  }
+export default {
+  name: 'App',
+}
 </script>
 
 <style>
-
 .navbar {
   overflow: hidden;
-  background-color: #333; 
+  background-color: #333;
   font-family: Arial, sans-serif;
   text-align: center;
   font-weight: bold;
-  color:white;
+  color: white;
 }
 
 .navbar a {
@@ -44,5 +43,4 @@
   background-color: #4CAF50;
   color: white;
 }
-
 </style>
