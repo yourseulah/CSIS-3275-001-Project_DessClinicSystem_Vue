@@ -125,6 +125,7 @@
                 <select class="form-control" v-model="payment.paymentMethod">
                     <option value="VISA">VISA</option>
                     <option value="MASTERCARD">MASTERCARD</option>
+                    <option value="AMEX">AMEX</option>
                     <option value="OTHER">OTHER</option>
                 </select>
             </div>
@@ -136,6 +137,7 @@
                 <select class="form-control" v-model="payment.insuranceCompany">
                     <option value="CGC CANADA">CGC CANADA</option>
                     <option value="BC HEALTH">BC HEALTH</option>
+                    <option value="AVIVA CANADA">AVIVA CANADA</option>
                     <option value="OTHER">OTHER</option>
                 </select>
             </div>
