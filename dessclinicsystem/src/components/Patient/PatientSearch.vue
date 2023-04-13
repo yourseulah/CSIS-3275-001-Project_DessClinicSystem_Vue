@@ -192,6 +192,7 @@ tbody td {
 
 .divtext{
     text-align: center;
+    margin:50px;
 }
 
 .divtext input[type="text"] {

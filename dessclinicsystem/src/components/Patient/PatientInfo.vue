@@ -1,25 +1,21 @@
 <template>
-    <div>
+    <div class="patientInfoDiv">
         <PatientAdd :updatePatient="childName"></PatientAdd>
         <br /><br />
         <PatientSearch :getChild="getChildName"></PatientSearch>
         <br /><br />
-        <PatientList :getChild="getChildName"></PatientList>
-        
-        
     </div>
 </template>
 
 <script>
 import PatientSearch from './PatientSearch.vue';
 import PatientAdd from './PatientAdd.vue';
-import PatientList from './PatientList.vue';
+
 
 export default {
     components: {
         PatientSearch,
-        PatientAdd,
-        PatientList
+        PatientAdd
     },
 
     data() {
@@ -37,3 +33,10 @@ export default {
 }
 
 </script>
+
+<style>
+.patientInfoDiv
+{
+    margin: 3%;
+}
+</style>
