@@ -1,5 +1,5 @@
 <template>
-    <div class = "container">
+    <div class="container">
         <h1 class="text-center">Invoices</h1>
         <table class="table table-striped">
             <thead>
@@ -11,7 +11,7 @@
                 <th>Insurance Company</th>
             </thead>
             <tbody>
-                <tr v-for = "invoice in invoices" v-bind:key = "invoice.id">
+                <tr v-for="invoice in invoices" v-bind:key="invoice.id">
                     <td> {{ invoice.id }}</td>
                     <td> {{ invoice.paymentDate }}</td>
                     <td> {{ invoice.method }}</td>
@@ -26,33 +26,32 @@
 
 
 <script>
-    import InvoiceService from '../../services/InvoiceService'
+import InvoiceService from '../../services/InvoiceService'
 
-    export default {
-        name: 'AllInvoices',
-        data(){
-            return {
-                invoices : []
-            }
-        },
-        methods: {
-            getInvoices(){
-                InvoiceService.getInvoices().then((response) =>{
-                    this.invoices = response.data;
-                }).catch(error => {
-                    this.message = error.response.data.message;
-                    console.log(error.response.data);
-                })
-            }
-        },
-        created(){
-            this.getInvoices()
+export default {
+    name: 'AllInvoices',
+    data() {
+        return {
+            invoices: []
         }
+    },
+    methods: {
+        getInvoices() {
+            InvoiceService.getInvoices().then((response) => {
+                this.invoices = response.data;
+            }).catch(error => {
+                this.message = error.response.data.message;
+                console.log(error.response.data);
+            })
+        }
+    },
+    created() {
+        this.getInvoices()
     }
+}
 </script>
 
 <style scoped>
-
 table {
     border-collapse: collapse;
     width: 80%;
@@ -61,7 +60,8 @@ table {
     font-size: 18px;
 }
 
-th, td {
+th,
+td {
     text-align: center;
     padding: 12px;
 }
@@ -117,6 +117,7 @@ tbody td {
     color: #fff;
     transform: translateY(-2px);
 }
+
 .button-container {
     display: flex;
     justify-content: center;
