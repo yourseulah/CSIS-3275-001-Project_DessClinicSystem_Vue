@@ -16,7 +16,8 @@
                     <td> {{ invoice.paymentDate }}</td>
                     <td> {{ invoice.method }}</td>
                     <td> {{ invoice.amount }}</td>
-                    <td> {{ invoice.status }}</td>
+                    <td> {{ invoice.status }} <button class="btn btn-info btn-sm" v-if="invoice.status!='Paid'" 
+                        @click="handleUpdateInvoiceClick(invoice)">Paid</button></td>
                     <td> {{ invoice.insuranceCompany }}</td>
                 </tr>
             </tbody>
@@ -32,7 +33,11 @@ export default {
     name: 'AllInvoices',
     data() {
         return {
-            invoices: []
+            invoices: [],
+            invoice : {
+                id: '',
+                status: ''
+            }
         }
     },
     methods: {
@@ -43,7 +48,22 @@ export default {
                 this.message = error.response.data.message;
                 console.log(error.response.data);
             })
-        }
+        },
+        handleUpdateInvoiceClick(invoiceUp) {
+            event.preventDefault();
+            invoiceUp.status = "Paid";
+            InvoiceService.updateInvoice(invoiceUp.id, invoiceUp)
+                .then(response => {
+                    const updatedInv = response.data;
+                    console.log("Updated Invoice:");
+                    console.log(updatedInv);
+
+                    this.getInvoices();
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
     },
     created() {
         this.getInvoices()
@@ -100,7 +120,7 @@ tbody td {
 
 .btn {
     border-radius: 5px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     margin-right: 10px;
 }
 

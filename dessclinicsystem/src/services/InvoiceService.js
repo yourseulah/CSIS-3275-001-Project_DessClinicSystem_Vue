@@ -16,6 +16,10 @@ class InvoiceService{
     getInvoiceById(id){
         return http.get(`/invoices/${id}`);
     }
+
+    updateInvoice(id, updatedInvoice){
+        return http.put(`/invoices/${id}`, updatedInvoice);
+    }
 }
 
 export default new InvoiceService()
