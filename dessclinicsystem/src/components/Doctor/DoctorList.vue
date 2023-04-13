@@ -22,8 +22,10 @@
                     <td> {{ doctor.major }}</td>
                     <td> {{ doctor.dYoP }}</td>
                     <td>
-                        <button class="btn btn-info btn-lg" v-on:click="getChild(doctor)">Update</button>
-                        <button v-on:click="handleDeleteDoctorClick(doctor.dId)" class="btn btn-info btn-lg"
+                        <button class="btn btn-info btn-sm" v-on:click="getChild(doctor)">
+                            Update</button>
+                        <button v-on:click="handleDeleteDoctorClick(doctor.dId)" 
+                        class="btn btn-info btn-sm"
                             id="cancel">Delete</button>
                     </td>
                 </tr>
@@ -139,7 +141,7 @@ tbody td {
 
 .btn {
     border-radius: 5px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     margin-right: 10px;
 }
 

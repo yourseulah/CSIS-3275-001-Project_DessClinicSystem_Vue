@@ -34,8 +34,10 @@
                     <td> {{ patient.allergies }}</td>
                     <td> {{ patient.geneticDisease }}</td>
                     <td>
-                        <button class="btn btn-info btn-lg" v-on:click="getChild(patient)">Update</button>
-                        <button class="btn btn-info btn-lg" id="cancel"
+                        <button class="btn btn-info btn-sm" 
+                        v-on:click="getChild(patient)">
+                            Update</button>
+                        <button class="btn btn-info btn-sm" id="cancel"
                             v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
                     </td>
                 </tr>
@@ -144,7 +146,7 @@ tbody td {
 
 .btn {
     border-radius: 5px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     margin-right: 10px;
 }
 
