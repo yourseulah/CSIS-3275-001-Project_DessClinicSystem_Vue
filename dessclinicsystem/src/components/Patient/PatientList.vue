@@ -1,5 +1,5 @@
 <template>
-    <div class = "container">
+    <div class="container">
         <h1 class="text-center">Patients</h1>
         <table class="table table-striped">
             <thead>
@@ -19,7 +19,7 @@
                 <th>ACTIONS</th>
             </thead>
             <tbody>
-                <tr v-for = "patient in patients" v-bind:key = "patient.id">
+                <tr v-for="patient in patients" v-bind:key="patient.id">
                     <td> {{ patient.id }}</td>
                     <td> {{ patient.patientId }}</td>
                     <td> {{ patient.firstName }}</td>
@@ -35,7 +35,8 @@
                     <td> {{ patient.geneticDisease }}</td>
                     <td>
                         <button class="btn btn-info btn-lg" v-on:click="getChild(patient)">Update</button>
-                        <button class="btn btn-info btn-lg" id="cancel" v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
+                        <button class="btn btn-info btn-lg" id="cancel"
+                            v-on:click="handleDeletePatientClick(patient.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -44,37 +45,37 @@
 </template>
 
 <script>
-    import PatientDataService from '@/services/PatientDataService';
+import PatientDataService from '@/services/PatientDataService';
 
-    export default {
-        name: 'AllPatients',
+export default {
+    name: 'AllPatients',
 
-        props: {
-            getChild: Function
-        },
+    props: {
+        getChild: Function
+    },
 
-        data(){
-            return {
-                patients : [],
-                patient: null,
-            }
-        },
-        methods: {
-            retreiveAllPatients(){
-                PatientDataService.retreiveAllPatients()
-                .then(response =>{
+    data() {
+        return {
+            patients: [],
+            patient: null,
+        }
+    },
+    methods: {
+        retreiveAllPatients() {
+            PatientDataService.retreiveAllPatients()
+                .then(response => {
                     this.patients = response.data;
                 }).catch(error => {
                     this.message = error.response.data.message;
                     console.log(error.response.data);
                 })
-            },
+        },
 
-            handleDeletePatientClick(id){
+        handleDeletePatientClick(id) {
 
-                console.log("id:"+ id);
-                        
-                PatientDataService.deletePatient(id)
+            console.log("id:" + id);
+
+            PatientDataService.deletePatient(id)
                 .then(response => {
                     console.log(response.data);
                 }).catch(error => {
@@ -82,20 +83,19 @@
                     console.log(error.response.data);
                 })
 
-                alert("Patient Deleted!");
+            alert("Patient Deleted!");
 
-                this.retreiveAllPatients()
-            },
-
-        },
-        created(){
             this.retreiveAllPatients()
-        }
+        },
+
+    },
+    created() {
+        this.retreiveAllPatients()
     }
+}
 </script>
 
 <style scoped>
-
 table {
     border-collapse: collapse;
     width: 80%;
@@ -104,7 +104,8 @@ table {
     font-size: 18px;
 }
 
-th, td {
+th,
+td {
     text-align: center;
     padding: 12px;
 }
@@ -160,12 +161,11 @@ tbody td {
     color: #fff;
     transform: translateY(-2px);
 }
+
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
-
-
 </style>

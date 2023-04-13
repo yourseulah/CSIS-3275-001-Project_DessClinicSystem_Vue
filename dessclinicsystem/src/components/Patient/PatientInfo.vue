@@ -13,21 +13,21 @@ import PatientSearch from './PatientSearch.vue';
 import PatientAdd from './PatientAdd.vue';
 import PatientList from './PatientList.vue';
 
-export default{
+export default {
     components: {
         PatientSearch,
         PatientAdd,
         PatientList
     },
 
-    data(){
-        return{
+    data() {
+        return {
             childName: null
         }
     },
 
     methods: {
-        getChildName(childName){
+        getChildName(childName) {
             this.childName = childName;
         }
     }

@@ -1,113 +1,114 @@
 <template>
     <div class="container createPatient">
         <form v-on:submit.prevent="handleSubmit">
-        <h1>{{ Action }} Patient Profile</h1>
-        <br />
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Birth Date:</label>
+            <h1>{{ Action }} Patient Profile</h1>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Birth Date:</label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="date" name="dob" v-model="patient.dob">
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Mobile Phone: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="mobile" v-model="patient.mobile">
+                </div>
             </div>
-            <div class="col">
-                <input class="form-control" type="date" name="dob" v-model="patient.dob">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Gender: </label>
+                </div>
+                <div class="col">
+                    <select class="form-select" name="gender" v-model="patient.gender">
+                        <option value="Male" selected>Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Unknown">Unknown</option>
+                    </select>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Email: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="email" name="email" v-model="patient.email">
+                </div>
             </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Mobile Phone: </label>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Patient First Name: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="firstName" v-model="patient.firstName">
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Address: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="address" v-model="patient.address">
+                </div>
             </div>
-            <div class="col">
-                <input class="form-control" type="text" name="mobile" v-model="patient.mobile">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Patient Last Name: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="lastName" v-model="patient.lastName">
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Zip Code: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="zipCode" v-model="patient.zipCode">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Gender: </label>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Surgery: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="surgery" v-model="patient.surgery">
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
-            <div class="col">
-                <select class="form-select" name="gender" v-model="patient.gender">
-                    <option value="Male" selected>Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Unknown">Unknown</option>
-                </select>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Allergies: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="allergies" v-model="patient.allergies">
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Email: </label>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Genetic Disease: </label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="geneticDisease" v-model="patient.geneticDisease">
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label class="form-label">Patient ID:</label>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="patientID" v-model="patient.patientId">
+                </div>
             </div>
-            <div class="col">
-                <input class="form-control" type="email" name="email" v-model="patient.email">
+            <div class="button-container">
+                <button v-if="showCreate" class="btn btn-info btn-lg">Save</button>
+                <button v-if="showUpdate" class="btn btn-info btn-lg" @click="handleUpdatePatientClick">Update</button>
+                <button class="btn btn-info btn-lg" @click="clearForm" id="cancel">Cancel</button>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Patient First Name: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="firstName" v-model="patient.firstName">
-            </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Address: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="address" v-model="patient.address">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Patient Last Name: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="lastName" v-model="patient.lastName">
-            </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Zip Code: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="zipCode" v-model="patient.zipCode">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Surgery: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="surgery" v-model="patient.surgery">
-            </div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Allergies: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="allergies" v-model="patient.allergies">
-            </div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Genetic Disease: </label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="geneticDisease" v-model="patient.geneticDisease">
-            </div>
-            <div class="col"></div>
-            <div class="col">
-                <label class="form-label">Patient ID:</label>
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" name="patientID" v-model="patient.patientId">
-            </div>
-        </div>
-        <div class="button-container">
-        <button v-if="showCreate" class="btn btn-info btn-lg">Save</button>
-        <button v-if="showUpdate" class="btn btn-info btn-lg" @click="handleUpdatePatientClick">Update</button>
-        <button class="btn btn-info btn-lg" @click="clearForm" id="cancel">Cancel</button></div>
         </form>
     </div>
 </template>
@@ -123,7 +124,7 @@ export default {
 
     props: {
         updatePatient: {
-            
+
         }
     },
 
@@ -149,53 +150,53 @@ export default {
             showCreate: true,
         };
     },
-    methods: {       
-        
+    methods: {
+
         handleSubmit() {
             if (this.validateForm()) {
                 event.preventDefault();
-            const newPatient = this.patient;
+                const newPatient = this.patient;
 
-            console.log(newPatient);
+                console.log(newPatient);
 
-            PatientDataService.addPatient(newPatient)
-                .then(response => {
-                    const newPat = response.data;
-                    console.log("New Patient:");
-                    console.log(newPat);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+                PatientDataService.addPatient(newPatient)
+                    .then(response => {
+                        const newPat = response.data;
+                        console.log("New Patient:");
+                        console.log(newPat);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
 
-            alert("Patient is created");
-            this.$router.push({ name: 'PatientInfo' });
-               
+                alert("Patient is created");
+                this.$router.push({ name: 'PatientInfo' });
+
             } else {
                 alert("Please fill in all required fields and ensure that the email and mobile number are in correct format");
             }
 
         },
         validateForm() {
-  if (!this.patient.dob || !this.patient.mobile || !this.patient.gender || !this.patient.email ||
-      !this.patient.firstName || !this.patient.lastName || !this.patient.address || !this.patient.zipCode) {
-    return false;
-  }
+            if (!this.patient.dob || !this.patient.mobile || !this.patient.gender || !this.patient.email ||
+                !this.patient.firstName || !this.patient.lastName || !this.patient.address || !this.patient.zipCode) {
+                return false;
+            }
 
 
-  const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-  if (!emailRegex.test(this.patient.email)) {
-    return false;
-  }
+            const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+            if (!emailRegex.test(this.patient.email)) {
+                return false;
+            }
 
 
-  const phoneRegex = /^\d{10}$/;
-  if (!phoneRegex.test(this.patient.mobile)) {
-    return false;
-  }
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(this.patient.mobile)) {
+                return false;
+            }
 
-  return true;
-},
+            return true;
+        },
 
         handleAddPatientClick(event) {
             event.preventDefault();
@@ -339,4 +340,5 @@ form {
 #cancel:hover {
     background-color: red;
 
-}</style>
+}
+</style>

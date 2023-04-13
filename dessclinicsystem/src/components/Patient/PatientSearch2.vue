@@ -1,64 +1,65 @@
 <template>
-    <div class = "container">
-        <input type="text" name="searchStr" placeholder="Select Patient" v-model="queryStr" @keyup.enter="handleSearchPatientClick">
-        <table v-if="result" class="table table-striped">
-            <thead>
-                <th>Name</th>
-            </thead>
-            <tbody>
-                <tr v-for = "patient in patients" v-bind:key = "patient.id">
-                    <td v-on:click="putPatToNewAppoint(patient)"> {{ patient.firstName }} {{ patient.lastName }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="container">
+    <input type="text" name="searchStr" placeholder="Select Patient" v-model="queryStr"
+      @keyup.enter="handleSearchPatientClick">
+    <table v-if="result" class="table table-striped">
+      <thead>
+        <th>Name</th>
+      </thead>
+      <tbody>
+        <tr v-for="patient in patients" v-bind:key="patient.id">
+          <td v-on:click="putPatToNewAppoint(patient)"> {{ patient.firstName }} {{ patient.lastName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
-    import PatientDataService from '@/services/PatientDataService';
+import PatientDataService from '@/services/PatientDataService';
 
-    export default {
-        name: 'AllPatients',
+export default {
+  name: 'AllPatients',
 
-        props: {
-            putPatToNewAppoint: Function
-        },
+  props: {
+    putPatToNewAppoint: Function
+  },
 
-        data(){
-            return {
-                result: false,
-                queryStr: "",
-                NotFound: "",
-                patients : [],
-            }
-        },
-        methods: {
-            handleSearchPatientClick(event){
-                event.preventDefault();
-                PatientDataService.searchPatient(this.queryStr)
-                    .then(response =>{
-                    this.result = true;
-                    this.patients = response.data;
-                    this.NotFound = "";
-                }).catch(error => {
-                    this.result = false;
-                    this.NotFound = "Found no match...";
-                    this.message = error.response.data.message;
-                    console.log(error.response.data);
-                })
-            }
-        },
-
-        handleDeletePatientClick(id){
-                    
-        let result;
-        result = PatientDataService.deletePatient(id);
-    
-        console.warn(result);
-        alert("Submitted");
-
-        },
+  data() {
+    return {
+      result: false,
+      queryStr: "",
+      NotFound: "",
+      patients: [],
     }
+  },
+  methods: {
+    handleSearchPatientClick(event) {
+      event.preventDefault();
+      PatientDataService.searchPatient(this.queryStr)
+        .then(response => {
+          this.result = true;
+          this.patients = response.data;
+          this.NotFound = "";
+        }).catch(error => {
+          this.result = false;
+          this.NotFound = "Found no match...";
+          this.message = error.response.data.message;
+          console.log(error.response.data);
+        })
+    }
+  },
+
+  handleDeletePatientClick(id) {
+
+    let result;
+    result = PatientDataService.deletePatient(id);
+
+    console.warn(result);
+    alert("Submitted");
+
+  },
+}
 </script>
 
 <style scoped>
@@ -113,5 +114,4 @@ td:hover {
   cursor: pointer;
   background-color: #ccc;
 }
-
 </style>
