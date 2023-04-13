@@ -1,11 +1,10 @@
 <template>
   <div class="container">
-    
-    <Header />
-  
-  <router-view />
-  </div>
 
+    <Header />
+
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -15,25 +14,20 @@ export default {
   name: 'App',
 
   components: {
-            Header
-        },
+    Header
+  },
 
 }
 </script>
 
 
 <style>
-
-.container{
-  
-    background-color: #f5f5f5;
-    color:#444444;
-    
+.container {
+  background-color: #f5f5f5;
+  color: #444444;
 }
 
-#cancel:hover{
-  background-color:red;
+#cancel:hover {
+  background-color: red;
 }
-
-
 </style>
